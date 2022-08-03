@@ -35,7 +35,7 @@ struct CustomTabBar: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 32, height: 32)
+                        .frame(width: 50, height: 50)
                     Text("New Chat")
                         .font(Font.tabBar)
                 }
