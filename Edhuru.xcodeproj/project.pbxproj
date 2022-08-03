@@ -8,17 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F49289A4679004E8956 /* EdhuruApp.swift */; };
-		394C1F4C289A4679004E8956 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F4B289A4679004E8956 /* ContentView.swift */; };
+		394C1F4C289A4679004E8956 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F4B289A4679004E8956 /* RootView.swift */; };
 		394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F4D289A467A004E8956 /* Assets.xcassets */; };
 		394C1F51289A467A004E8956 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F50289A467A004E8956 /* Preview Assets.xcassets */; };
+		394C1F60289A4A73004E8956 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F5D289A4A73004E8956 /* LexendDeca-Bold.ttf */; };
+		394C1F61289A4A73004E8956 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F5E289A4A73004E8956 /* LexendDeca-SemiBold.ttf */; };
+		394C1F62289A4A73004E8956 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F5F289A4A73004E8956 /* LexendDeca-Regular.ttf */; };
+		394C1F65289A4B56004E8956 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F64289A4B56004E8956 /* Fonts.swift */; };
+		394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F67289A6922004E8956 /* CustomTabBar.swift */; };
+		39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D4D289A6F7800B08027 /* TabBarButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		394C1F46289A4679004E8956 /* Edhuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edhuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394C1F49289A4679004E8956 /* EdhuruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdhuruApp.swift; sourceTree = "<group>"; };
-		394C1F4B289A4679004E8956 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		394C1F4B289A4679004E8956 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		394C1F4D289A467A004E8956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		394C1F50289A467A004E8956 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		394C1F5D289A4A73004E8956 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
+		394C1F5E289A4A73004E8956 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
+		394C1F5F289A4A73004E8956 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
+		394C1F63289A4A81004E8956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		394C1F64289A4B56004E8956 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		394C1F67289A6922004E8956 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		39A19D4D289A6F7800B08027 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +64,14 @@
 		394C1F48289A4679004E8956 /* Edhuru */ = {
 			isa = PBXGroup;
 			children = (
+				394C1F63289A4A81004E8956 /* Info.plist */,
 				394C1F49289A4679004E8956 /* EdhuruApp.swift */,
-				394C1F4B289A4679004E8956 /* ContentView.swift */,
+				394C1F57289A469D004E8956 /* Views */,
+				394C1F58289A46A6004E8956 /* ViewModels */,
+				394C1F59289A46AC004E8956 /* Models */,
+				394C1F5A289A46BA004E8956 /* Services */,
+				394C1F5B289A46C1004E8956 /* Helpers */,
+				394C1F5C289A46C7004E8956 /* Fonts */,
 				394C1F4D289A467A004E8956 /* Assets.xcassets */,
 				394C1F4F289A467A004E8956 /* Preview Content */,
 			);
@@ -65,6 +84,63 @@
 				394C1F50289A467A004E8956 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		394C1F57289A469D004E8956 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				394C1F4B289A4679004E8956 /* RootView.swift */,
+				394C1F66289A68F4004E8956 /* Custom Tab Bar */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		394C1F58289A46A6004E8956 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		394C1F59289A46AC004E8956 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		394C1F5A289A46BA004E8956 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		394C1F5B289A46C1004E8956 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				394C1F64289A4B56004E8956 /* Fonts.swift */,
+				39A19D4D289A6F7800B08027 /* TabBarButton.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		394C1F5C289A46C7004E8956 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				394C1F5D289A4A73004E8956 /* LexendDeca-Bold.ttf */,
+				394C1F5F289A4A73004E8956 /* LexendDeca-Regular.ttf */,
+				394C1F5E289A4A73004E8956 /* LexendDeca-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		394C1F66289A68F4004E8956 /* Custom Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				394C1F67289A6922004E8956 /* CustomTabBar.swift */,
+			);
+			path = "Custom Tab Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +201,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				394C1F62289A4A73004E8956 /* LexendDeca-Regular.ttf in Resources */,
+				394C1F61289A4A73004E8956 /* LexendDeca-SemiBold.ttf in Resources */,
 				394C1F51289A467A004E8956 /* Preview Assets.xcassets in Resources */,
 				394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */,
+				394C1F60289A4A73004E8956 /* LexendDeca-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +216,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				394C1F4C289A4679004E8956 /* ContentView.swift in Sources */,
+				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
+				394C1F4C289A4679004E8956 /* RootView.swift in Sources */,
+				394C1F65289A4B56004E8956 /* Fonts.swift in Sources */,
+				39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +352,7 @@
 				DEVELOPMENT_TEAM = 4HKB37NRY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Edhuru/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +382,7 @@
 				DEVELOPMENT_TEAM = 4HKB37NRY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Edhuru/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
