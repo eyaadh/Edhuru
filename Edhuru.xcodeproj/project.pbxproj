@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */; };
+		3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */; };
 		394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F49289A4679004E8956 /* EdhuruApp.swift */; };
 		394C1F4C289A4679004E8956 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F4B289A4679004E8956 /* RootView.swift */; };
 		394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F4D289A467A004E8956 /* Assets.xcassets */; };
@@ -25,9 +27,17 @@
 		39A19D5B289A8EC600B08027 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D5A289A8EC600B08027 /* FirebaseStorage */; };
 		39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D5C289A8F2300B08027 /* AppDelegate.swift */; };
 		39A19D60289AD33900B08027 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D5F289AD33900B08027 /* AuthViewModel.swift */; };
+		39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D64289AD63100B08027 /* OnboardingContainerView.swift */; };
+		39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D66289AD75900B08027 /* WelcomeView.swift */; };
+		39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D68289AD76500B08027 /* PhoneNumberView.swift */; };
+		39A19D6B289AD76C00B08027 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D6A289AD76C00B08027 /* VerificationView.swift */; };
+		39A19D6D289AD77E00B08027 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D6C289AD77E00B08027 /* CreateProfileView.swift */; };
+		39A19D6F289AD78700B08027 /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D6E289AD78700B08027 /* SyncContactsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonStyle.swift; sourceTree = "<group>"; };
+		3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextFiledStyle.swift; sourceTree = "<group>"; };
 		394C1F46289A4679004E8956 /* Edhuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edhuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394C1F49289A4679004E8956 /* EdhuruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdhuruApp.swift; sourceTree = "<group>"; };
 		394C1F4B289A4679004E8956 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -44,6 +54,12 @@
 		39A19D5C289A8F2300B08027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39A19D5E289AD16900B08027 /* Edhuru.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Edhuru.entitlements; sourceTree = "<group>"; };
 		39A19D5F289AD33900B08027 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		39A19D64289AD63100B08027 /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
+		39A19D66289AD75900B08027 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		39A19D68289AD76500B08027 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
+		39A19D6A289AD76C00B08027 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		39A19D6C289AD77E00B08027 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
+		39A19D6E289AD78700B08027 /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +127,7 @@
 			children = (
 				394C1F4B289A4679004E8956 /* RootView.swift */,
 				394C1F66289A68F4004E8956 /* Custom Tab Bar */,
+				39A19D61289AD5F000B08027 /* Onboarding */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,6 +159,8 @@
 			children = (
 				394C1F64289A4B56004E8956 /* Fonts.swift */,
 				39A19D4D289A6F7800B08027 /* TabBarButton.swift */,
+				3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */,
+				3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -162,6 +181,19 @@
 				394C1F67289A6922004E8956 /* CustomTabBar.swift */,
 			);
 			path = "Custom Tab Bar";
+			sourceTree = "<group>";
+		};
+		39A19D61289AD5F000B08027 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				39A19D64289AD63100B08027 /* OnboardingContainerView.swift */,
+				39A19D66289AD75900B08027 /* WelcomeView.swift */,
+				39A19D68289AD76500B08027 /* PhoneNumberView.swift */,
+				39A19D6A289AD76C00B08027 /* VerificationView.swift */,
+				39A19D6C289AD77E00B08027 /* CreateProfileView.swift */,
+				39A19D6E289AD78700B08027 /* SyncContactsView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,12 +280,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A19D6F289AD78700B08027 /* SyncContactsView.swift in Sources */,
 				39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */,
+				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
+				3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */,
 				394C1F4C289A4679004E8956 /* RootView.swift in Sources */,
+				39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */,
 				39A19D60289AD33900B08027 /* AuthViewModel.swift in Sources */,
+				39A19D6D289AD77E00B08027 /* CreateProfileView.swift in Sources */,
+				39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */,
 				394C1F65289A4B56004E8956 /* Fonts.swift in Sources */,
+				39A19D6B289AD76C00B08027 /* VerificationView.swift in Sources */,
 				39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */,
+				3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
