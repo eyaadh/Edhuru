@@ -14,6 +14,7 @@
 		3945D125289B860A005A70B9 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D124289B860A005A70B9 /* DatabaseService.swift */; };
 		3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D126289B88C5005A70B9 /* TextHelper.swift */; };
 		3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */; };
+		3945D12B289BB20B005A70B9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D12A289BB20B005A70B9 /* ImagePicker.swift */; };
 		394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F49289A4679004E8956 /* EdhuruApp.swift */; };
 		394C1F4C289A4679004E8956 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F4B289A4679004E8956 /* RootView.swift */; };
 		394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F4D289A467A004E8956 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		3945D124289B860A005A70B9 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		3945D126289B88C5005A70B9 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayChunkExtension.swift; sourceTree = "<group>"; };
+		3945D12A289BB20B005A70B9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		394C1F46289A4679004E8956 /* Edhuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edhuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394C1F49289A4679004E8956 /* EdhuruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdhuruApp.swift; sourceTree = "<group>"; };
 		394C1F4B289A4679004E8956 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				39A19D68289AD76500B08027 /* PhoneNumberView.swift */,
 				39A19D6A289AD76C00B08027 /* VerificationView.swift */,
 				39A19D6C289AD77E00B08027 /* CreateProfileView.swift */,
+				3945D12A289BB20B005A70B9 /* ImagePicker.swift */,
 				39A19D6E289AD78700B08027 /* SyncContactsView.swift */,
 			);
 			path = Onboarding;
@@ -298,6 +301,7 @@
 				3945D125289B860A005A70B9 /* DatabaseService.swift in Sources */,
 				39A19D6F289AD78700B08027 /* SyncContactsView.swift in Sources */,
 				39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */,
+				3945D12B289BB20B005A70B9 /* ImagePicker.swift in Sources */,
 				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,

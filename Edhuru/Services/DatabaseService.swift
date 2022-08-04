@@ -8,6 +8,8 @@
 import Foundation
 import Contacts
 import Firebase
+import FirebaseStorage
+import UIKit
 
 class DatabaseService {
     func getPlatformUsers(localContacts: [CNContact], completion: @escaping([User]) -> Void) {
@@ -53,5 +55,55 @@ class DatabaseService {
         
         // return these users
         completion(platformUsers)
+    }
+        
+    func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
+        
+        // TODO: Guard against logged out users
+        
+        // get a refernce to Firestore
+        let db = Firestore.firestore()
+        
+        // set the profile data
+        // TODO: with implementation of auth use users actual ID
+        let doc = db.collection("users").document()
+        doc.setData([
+            "firstName": firstName,
+            "lastName": lastName
+        ])
+        
+        // check if the image is passed through
+        if let image = image {
+            // Create storage reference
+            let storageRef = Storage.storage().reference()
+            
+            // Turn our image into data
+            let imageData = image.jpegData(compressionQuality: 0.8)
+            
+            // Check that we were able to convert it to data
+            guard imageData != nil else {
+                return
+            }
+            
+            // Specify the file path and name
+            let path = "images/\(UUID().uuidString).jpg"
+            let fileRef = storageRef.child(path)
+            
+            let uploadTask = fileRef.putData(imageData!, metadata: nil) { meta, err in
+                if err == nil && meta != nil {
+                    // set that image path on the user doc
+                    doc.setData(["photo": path], merge: true) { error in
+                        // success, notify caller
+                        completion(true)
+                    }
+                    
+                } else {
+                    // upload was not successfull
+                    completion(false)
+                }
+            }
+            
+            
+        }
     }
 }
