@@ -35,12 +35,17 @@ class DatabaseService {
         // divide the lookupPhoneNumbers array into equal chunks of 10 items
         let chunkedLookupPhoneNumbers = lookupPhoneNumbers.chunked(into: 10)
         
+        let group = DispatchGroup()
+        
         // loop through the chunks and query the db to check for phone numbers that exists in the platform
         for lookupPhoneNumbersChunk in chunkedLookupPhoneNumbers {
+            group.enter()
             let query = db.collection("users").whereField("phone", in: lookupPhoneNumbersChunk)
             
             // retrieve the users that are on the platform
             query.getDocuments { snapshot, err in
+                
+                defer { group.leave() }
                 // check for errors
                 if err == nil && snapshot != nil {
                     // for each doc that was fetched create a user for platformUsers array
@@ -54,9 +59,12 @@ class DatabaseService {
         }
         
         // return these users
-        completion(platformUsers)
-    }
+        group.notify(queue: .main) {
+            completion(platformUsers)
+        }
         
+    }
+    
     func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
         
         // Guard against logged out users
@@ -73,8 +81,8 @@ class DatabaseService {
         // set the profile data
         let doc = db.collection("users").document(userUID)
         doc.setData([
-            "firstName": firstName,
-            "lastName": lastName,
+            "firstname": firstName,
+            "lastname": lastName,
             "phone": userPhone
         ])
         
