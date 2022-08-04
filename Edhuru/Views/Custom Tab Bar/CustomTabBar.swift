@@ -28,7 +28,7 @@ struct CustomTabBar: View {
             .tint(Color("icons-secondary"))
             
             Button {
-                //
+                AuthViewModel.logout()
             } label: {
                 VStack(alignment: .center, spacing: 4) {
                     
