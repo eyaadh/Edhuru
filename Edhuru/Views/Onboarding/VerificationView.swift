@@ -10,6 +10,7 @@ import Combine
 
 struct VerificationView: View {
     @Binding var currentStep: OnboardingStep
+    @Binding var isOnboarding: Bool
     @State var verifcationCode = ""
     
     var body: some View {
@@ -58,8 +59,19 @@ struct VerificationView: View {
                 // send the verification code to firebase
                 AuthViewModel.verifyCode(code: verifcationCode) { error in
                     if error == nil {
-                        // goto Next Step on onboarding
-                        currentStep = .profile
+                        // check if the user exists in the platform
+                        DatabaseService().checkUserProfile { exists in
+                            if exists {
+                                // End the onboarding since the user is logging for the second time
+                                // use the prior profile
+                                isOnboarding = false
+                            } else {
+                                // goto Next Step on onboarding - profile creation
+                                currentStep = .profile
+                            }
+                        }
+                        
+                        
                     } else {
                         // TODO: Show the error to user
                     }
@@ -77,6 +89,6 @@ struct VerificationView: View {
 
 struct VerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        VerificationView(currentStep: .constant(.verification))
+        VerificationView(currentStep: .constant(.verification), isOnboarding: .constant(true))
     }
 }

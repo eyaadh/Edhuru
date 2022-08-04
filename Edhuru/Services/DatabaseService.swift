@@ -59,17 +59,23 @@ class DatabaseService {
         
     func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
         
-        // TODO: Guard against logged out users
+        // Guard against logged out users
+        guard AuthViewModel.isUserLoggedIn() != false else {
+            return
+        }
+        
+        let userUID = AuthViewModel.getLoggedInUserID()
+        let userPhone: String = TextHelper.sanatizePhoneNumber(phone: AuthViewModel.getLoggedInUserPhoneNumber())
         
         // get a refernce to Firestore
         let db = Firestore.firestore()
         
         // set the profile data
-        // TODO: with implementation of auth use users actual ID
-        let doc = db.collection("users").document()
+        let doc = db.collection("users").document(userUID)
         doc.setData([
             "firstName": firstName,
-            "lastName": lastName
+            "lastName": lastName,
+            "phone": userPhone
         ])
         
         // check if the image is passed through
@@ -104,6 +110,25 @@ class DatabaseService {
             }
             
             
+        }
+    }
+    
+    func checkUserProfile(completion: @escaping (Bool) -> Void) {
+        
+        // check if the user is logged
+        guard AuthViewModel.isUserLoggedIn() != false else {
+            return
+        }
+        
+        // create firestore reference
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(AuthViewModel.getLoggedInUserID()).getDocument { snapshot, error in
+            if error == nil && snapshot != nil {
+                completion(snapshot!.exists)
+            } else {
+                completion(false)
+            }
         }
     }
 }
