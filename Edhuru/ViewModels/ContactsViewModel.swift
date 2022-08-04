@@ -9,8 +9,12 @@ import Foundation
 import Contacts
 
 class ContactsViewModel: ObservableObject {
-    @Published var users = [User]()  // list of users on the platform from the local contacts
+    private var users = [User]()  // list of users on the platform from the local contacts
+    
     private var localContacts = [CNContact]() // list of local contacts from phone address book
+    
+    private var filteredText = ""
+    @Published var filteredUsers = [User]()
     
     func getLocalContacts() {
         // Perform the contact store method asynchronously so that it doesnt block the UI/main thread
@@ -39,11 +43,34 @@ class ContactsViewModel: ObservableObject {
                     // set the fetched users to the published users property
                     DispatchQueue.main.async {
                         self.users = platformUsers
+                        
+                        // TODO: Set the filtered list
+                        self.filteredContacts(filteredBy: self.filteredText)
                     }
                 }
             } catch {
                 // TODO: handle the error
             }
+        }
+    }
+    
+    func filteredContacts(filteredBy: String) {
+        
+        // store parameter into property
+        self.filteredText = filteredBy
+        
+        // if filter text is empty show all the users
+        if filteredText == "" {
+            self.filteredUsers = self.users
+        } else {
+            // run through the users list and filter by filtered term
+            self.filteredUsers = users.filter({ user in
+                // criteria for including this user into filtered user list
+                
+                user.firstname?.lowercased().contains(filteredText) ?? false ||
+                user.lastname?.lowercased().contains(filteredText) ?? false ||
+                user.phone?.lowercased().contains(filteredText) ?? false
+            })
         }
     }
 }
