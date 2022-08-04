@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */; };
 		3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */; };
+		3945D121289B7F3D005A70B9 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D120289B7F3D005A70B9 /* ContactsViewModel.swift */; };
+		3945D123289B84BD005A70B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D122289B84BD005A70B9 /* User.swift */; };
+		3945D125289B860A005A70B9 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D124289B860A005A70B9 /* DatabaseService.swift */; };
+		3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D126289B88C5005A70B9 /* TextHelper.swift */; };
+		3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */; };
 		394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F49289A4679004E8956 /* EdhuruApp.swift */; };
 		394C1F4C289A4679004E8956 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F4B289A4679004E8956 /* RootView.swift */; };
 		394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F4D289A467A004E8956 /* Assets.xcassets */; };
@@ -38,6 +43,11 @@
 /* Begin PBXFileReference section */
 		3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonStyle.swift; sourceTree = "<group>"; };
 		3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextFiledStyle.swift; sourceTree = "<group>"; };
+		3945D120289B7F3D005A70B9 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		3945D122289B84BD005A70B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3945D124289B860A005A70B9 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		3945D126289B88C5005A70B9 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayChunkExtension.swift; sourceTree = "<group>"; };
 		394C1F46289A4679004E8956 /* Edhuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edhuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394C1F49289A4679004E8956 /* EdhuruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdhuruApp.swift; sourceTree = "<group>"; };
 		394C1F4B289A4679004E8956 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -136,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				39A19D5F289AD33900B08027 /* AuthViewModel.swift */,
+				3945D120289B7F3D005A70B9 /* ContactsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -143,6 +154,7 @@
 		394C1F59289A46AC004E8956 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3945D122289B84BD005A70B9 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +162,7 @@
 		394C1F5A289A46BA004E8956 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3945D124289B860A005A70B9 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -161,6 +174,8 @@
 				39A19D4D289A6F7800B08027 /* TabBarButton.swift */,
 				3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */,
 				3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */,
+				3945D126289B88C5005A70B9 /* TextHelper.swift */,
+				3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -280,19 +295,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3945D125289B860A005A70B9 /* DatabaseService.swift in Sources */,
 				39A19D6F289AD78700B08027 /* SyncContactsView.swift in Sources */,
 				39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */,
 				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
+				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */,
 				394C1F4C289A4679004E8956 /* RootView.swift in Sources */,
 				39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */,
+				3945D123289B84BD005A70B9 /* User.swift in Sources */,
 				39A19D60289AD33900B08027 /* AuthViewModel.swift in Sources */,
 				39A19D6D289AD77E00B08027 /* CreateProfileView.swift in Sources */,
 				39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */,
 				394C1F65289A4B56004E8956 /* Fonts.swift in Sources */,
 				39A19D6B289AD76C00B08027 /* VerificationView.swift in Sources */,
 				39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */,
+				3945D121289B7F3D005A70B9 /* ContactsViewModel.swift in Sources */,
+				3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */,
 				3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,
 			);

@@ -14,6 +14,7 @@ struct EdhuruApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environmentObject(ContactsViewModel())
         }
     }
 }
