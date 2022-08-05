@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
     @State var selectedTabs: Tabs = .contacts
     @State var isOnboarding = !AuthViewModel.isUserLoggedIn()
+    @State var isChatShowing: Bool = false
     var body: some View {
         ZStack {
             Rectangle()
@@ -21,7 +22,7 @@ struct RootView: View {
                 case .chats:
                     ChatsListView()
                 case .contacts:
-                    ContactsListView()
+                    ContactsListView(isChatViewShowing: $isChatShowing)
                 }
                 
                 Spacer()
@@ -33,6 +34,11 @@ struct RootView: View {
             // on dismiss
         } content: {
             OnboardingContainerView(isOnboarding: $isOnboarding)
+        }
+        .fullScreenCover(isPresented: $isChatShowing) {
+            // on dismiss
+        } content: {
+            ConversationsView(isChatShowing: $isChatShowing)
         }
         
         

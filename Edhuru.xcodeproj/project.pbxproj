@@ -42,6 +42,9 @@
 		39B12C80289C2B4200C8E24D /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C7F289C2B4200C8E24D /* ContactsListView.swift */; };
 		39B12C82289C2B5700C8E24D /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C81289C2B5700C8E24D /* ChatsListView.swift */; };
 		39B12C84289C3A6F00C8E24D /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C83289C3A6F00C8E24D /* ContactRow.swift */; };
+		39B12C86289CD83C00C8E24D /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C85289CD83C00C8E24D /* ConversationsView.swift */; };
+		39B12C89289CDB7600C8E24D /* ProfilePicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C88289CDB7600C8E24D /* ProfilePicView.swift */; };
+		39B12C8B289CED8300C8E24D /* RoundedCornerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8A289CED8300C8E24D /* RoundedCornerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,9 @@
 		39B12C7F289C2B4200C8E24D /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
 		39B12C81289C2B5700C8E24D /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		39B12C83289C3A6F00C8E24D /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
+		39B12C85289CD83C00C8E24D /* ConversationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
+		39B12C88289CDB7600C8E24D /* ProfilePicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicView.swift; sourceTree = "<group>"; };
+		39B12C8A289CED8300C8E24D /* RoundedCornerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 				39A19D61289AD5F000B08027 /* Onboarding */,
 				39B12C7D289C2ADC00C8E24D /* ContactsView */,
 				39B12C7E289C2AE800C8E24D /* ChatsView */,
+				39B12C87289CDB5200C8E24D /* Misc */,
 				394C1F66289A68F4004E8956 /* Custom Tab Bar */,
 			);
 			path = Views;
@@ -180,6 +187,7 @@
 		394C1F5B289A46C1004E8956 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				39B12C8A289CED8300C8E24D /* RoundedCornerExtension.swift */,
 				394C1F64289A4B56004E8956 /* Fonts.swift */,
 				39A19D4D289A6F7800B08027 /* TabBarButton.swift */,
 				3945D11B289AE081005A70B9 /* OnboardingButtonStyle.swift */,
@@ -235,8 +243,17 @@
 			isa = PBXGroup;
 			children = (
 				39B12C81289C2B5700C8E24D /* ChatsListView.swift */,
+				39B12C85289CD83C00C8E24D /* ConversationsView.swift */,
 			);
 			path = ChatsView;
+			sourceTree = "<group>";
+		};
+		39B12C87289CDB5200C8E24D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				39B12C88289CDB7600C8E24D /* ProfilePicView.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +348,7 @@
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */,
+				39B12C86289CD83C00C8E24D /* ConversationsView.swift in Sources */,
 				394C1F4C289A4679004E8956 /* RootView.swift in Sources */,
 				39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */,
 				39B12C82289C2B5700C8E24D /* ChatsListView.swift in Sources */,
@@ -340,11 +358,13 @@
 				39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */,
 				394C1F65289A4B56004E8956 /* Fonts.swift in Sources */,
 				39A19D6B289AD76C00B08027 /* VerificationView.swift in Sources */,
+				39B12C8B289CED8300C8E24D /* RoundedCornerExtension.swift in Sources */,
 				39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */,
 				39B12C80289C2B4200C8E24D /* ContactsListView.swift in Sources */,
 				3945D121289B7F3D005A70B9 /* ContactsViewModel.swift in Sources */,
 				3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */,
 				3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */,
+				39B12C89289CDB7600C8E24D /* ProfilePicView.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,
 				39B12C84289C3A6F00C8E24D /* ContactRow.swift in Sources */,
 			);
