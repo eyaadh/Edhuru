@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ConversationsView: View {
     @EnvironmentObject var  chatViewModel: ChatViewModel
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @Binding var isChatShowing: Bool
     
     @State var chatMessage: String = ""
+    
+    @State var participants: [User] = [User]()
     
     var body: some View {
         VStack(spacing: 0){
@@ -33,17 +36,24 @@ struct ConversationsView: View {
                     }
 
                     
-                    
-                    Text("Ahmed Iyad Mohamed")
-                        .font(Font.chatHeading)
-                        .foregroundColor(Color("text-header"))
-                    
+                    // users name
+                    if participants.count > 0 {
+                        let partipant = participants.first
+                        
+                        Text("\(partipant?.firstname ?? "") \(partipant?.lastname ?? "")")
+                            .font(Font.chatHeading)
+                            .foregroundColor(Color("text-header"))
+                    }
                 }
                 
                 Spacer()
                 
                 // profile image
-                ProfilePicView(user: User())
+                if participants.count > 0 {
+                    let partipant = participants.first
+                    
+                    ProfilePicView(user: partipant!)
+                }
             }
             .frame(height: 104)
             .padding(.horizontal)
@@ -60,7 +70,7 @@ struct ConversationsView: View {
                         // dynamic message
                         HStack {
                             if isFromUser {
-                                Text("9:49")
+                                Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
                                     .font(Font.smallText)
                                     .foregroundColor(Color("text-timestamp"))
                                     .padding(.trailing, 20)
@@ -78,7 +88,7 @@ struct ConversationsView: View {
                             if !isFromUser {
                                 Spacer()
 
-                                Text("9:49")
+                                Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
                                     .font(Font.smallText)
                                     .foregroundColor(Color("text-timestamp"))
                                     .padding(.leading, 20)
@@ -162,6 +172,11 @@ struct ConversationsView: View {
         .onAppear {
             // call chat view model to retrieve all chat messages
             chatViewModel.getMessages()
+            
+            // try to get the other partipants as user instances
+            let ids = chatViewModel.getParticipantIDs()
+            self.participants = contactsViewModel.getParticipants(ids: ids)
+            
         }
         
     }
@@ -171,5 +186,6 @@ struct ConversationsView_Previews: PreviewProvider {
     static var previews: some View {
         ConversationsView(isChatShowing: .constant(true))
             .environmentObject(ChatViewModel())
+            .environmentObject(ContactsViewModel())
     }
 }

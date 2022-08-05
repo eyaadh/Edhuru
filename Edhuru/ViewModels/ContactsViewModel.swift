@@ -73,4 +73,19 @@ class ContactsViewModel: ObservableObject {
             })
         }
     }
+    
+    func getParticipants(ids: [String]) -> [User] {
+        
+        // filter the users list for those users who are present in this chat i.e. ids passed in
+        let foundUsers = users.filter { user in
+            if user.id == nil {
+                return false
+            } else {
+                return ids.contains(user.id!)
+            }
+        }
+        
+        return foundUsers
+        
+    }
 }

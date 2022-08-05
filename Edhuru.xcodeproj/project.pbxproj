@@ -47,6 +47,7 @@
 		39B12C8B289CED8300C8E24D /* RoundedCornerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8A289CED8300C8E24D /* RoundedCornerExtension.swift */; };
 		39B12C8D289D1D7400C8E24D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8C289D1D7300C8E24D /* Chat.swift */; };
 		39B12C8F289D1F3900C8E24D /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8E289D1F3900C8E24D /* ChatViewModel.swift */; };
+		39B12C91289D53FD00C8E24D /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C90289D53FD00C8E24D /* DateHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		39B12C8A289CED8300C8E24D /* RoundedCornerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerExtension.swift; sourceTree = "<group>"; };
 		39B12C8C289D1D7300C8E24D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		39B12C8E289D1F3900C8E24D /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		39B12C90289D53FD00C8E24D /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				3945D11E289AE955005A70B9 /* CreateProfileTextFiledStyle.swift */,
 				3945D126289B88C5005A70B9 /* TextHelper.swift */,
 				3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */,
+				39B12C90289D53FD00C8E24D /* DateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */,
 				39B12C82289C2B5700C8E24D /* ChatsListView.swift in Sources */,
 				3945D123289B84BD005A70B9 /* User.swift in Sources */,
+				39B12C91289D53FD00C8E24D /* DateHelper.swift in Sources */,
 				39A19D60289AD33900B08027 /* AuthViewModel.swift in Sources */,
 				39A19D6D289AD77E00B08027 /* CreateProfileView.swift in Sources */,
 				39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */,

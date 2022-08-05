@@ -31,6 +31,54 @@ class ChatViewModel: ObservableObject {
         }
     }
     
+    /// Search for chat with passed in user, if found update the selected chat, if not found create a new chat
+    func getChatFor(contact: User) {
+        
+        // validate the user
+        guard contact.id != nil else {
+            return
+        }
+        
+        let foundChat = chats.filter { chat in
+            return chat.numparticipants == 2 && chat.participantids.contains(contact.id!)
+        }
+        
+        // found an existing chat
+        if !foundChat.isEmpty {
+            self.selectedChat = foundChat.first!
+            
+            // also fetch the messages
+            getMessages()
+        } else {
+            // when there isnt one, create a chat
+            let newChat = Chat(
+                id: nil,
+                numparticipants: 2,
+                participantids: [AuthViewModel.getLoggedInUserID(), contact.id!],
+                lastmsg: nil,
+                updated: nil,
+                msgs: nil)
+            
+            
+            // set the selected chat
+            self.selectedChat = newChat
+            
+            // update the selected chat with a chat id from the data we get off callback of the createChat func on dbservice
+            databaseService.createChat(chat: newChat) { docid in
+                self.selectedChat = Chat(id: docid,
+                                         numparticipants: 2,
+                                         participantids: [AuthViewModel.getLoggedInUserID(), contact.id!],
+                                         lastmsg: nil,
+                                         updated: nil,
+                                         msgs: nil)
+                
+                // also add this chat to the chats list
+                self.chats.append(self.selectedChat!)
+            }
+        }
+        
+    }
+    
     func getMessages(){
         // check if theres any selected chat
         guard selectedChat != nil else {
@@ -52,4 +100,22 @@ class ChatViewModel: ObservableObject {
         
         databaseService.sendMessage(msg: msg, chat: selectedChat!)
     }
+    
+    /// Accepts a list  of user ids, removes the logged in user and returns the rest as an array
+    func getParticipantIDs() -> [String] {
+        
+        // check that there is a selected chat
+        guard selectedChat != nil else {
+            return [String]()
+        }
+        
+        // filter and remove the logged in user and set the new array
+        let ids = selectedChat!.participantids.filter({ id in
+            id != AuthViewModel.getLoggedInUserID()
+        })
+        
+        return ids
+    }
+    
+    
 }

@@ -254,4 +254,19 @@ class DatabaseService {
                                 "senderid": AuthViewModel.getLoggedInUserID(),
                                 "timestamp": Date()])
     }
+    
+    func createChat(chat: Chat, completion: @escaping (String) -> Void) {
+        
+        // get a reference to the database
+        let db = Firestore.firestore()
+        
+        // create a document for chat
+        let doc = db.collection("chats").document()
+            
+        // set the data for document
+        try? doc.setData(from: chat, completion: { error in
+            // communicate the document id
+            completion(doc.documentID)
+        })
+    }
 }
