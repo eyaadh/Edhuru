@@ -15,6 +15,7 @@ struct EdhuruApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(ContactsViewModel())
+                .environmentObject(ChatViewModel())
         }
     }
 }

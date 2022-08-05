@@ -154,4 +154,83 @@ class DatabaseService {
             }
         }
     }
+    
+    // MARK: - CHAT METHODS
+    
+    /// This method returns all chat documents where the logged in user is a participant
+    func getAllChats(completion: @escaping ([Chat]) -> Void) {
+        
+        // get a reference to the database
+        let db = Firestore.firestore()
+        
+        // perform a query against the chat collection for any chats where the logged in user is a participant
+        let chatQuery = db.collection("chats")
+            .whereField("participantids", arrayContains: AuthViewModel.getLoggedInUserID())
+        
+        chatQuery.getDocuments { snapshot, error in
+            if error == nil && snapshot != nil {
+                
+                var chats = [Chat]()
+                
+                for doc in snapshot!.documents {
+                    // parse the data into chat structs
+                    let chat = try? doc.data(as: Chat.self)
+                    
+                    // add the chat into chat array
+                    if let chat = chat {
+                        chats.append(chat)
+                    }
+                }
+                
+                // return the data
+                completion(chats)
+            } else {
+                print("Error in retreving the Chat from DB.")
+                completion([Chat]())
+            }
+        }
+    }
+    
+    /// This method returns all the messages for a given chat
+    func getAllMessages(chat: Chat, completion: @escaping ([ChatMessage]) -> Void) {
+        
+        // check that the ID is not nill
+        guard chat.id != nil else {
+            // cannot fetch data
+            completion([ChatMessage]())
+            return
+        }
+        
+        // get a reference to the database
+        let db = Firestore.firestore()
+        
+        // create the query
+        let msgQuery = db.collection("chats")
+            .document(chat.id!)
+            .collection("msgs")
+            .order(by: "timestamp")
+        
+        // perform the query
+        msgQuery.getDocuments { snapshot, error in
+            if error == nil && snapshot != nil {
+                // loop through the message documents and create chat message instances
+                var messages = [ChatMessage]()
+                
+                // parse the data
+                for doc in snapshot!.documents {
+                    let msg = try? doc.data(as: ChatMessage.self)
+                    
+                    if let msg = msg {
+                        messages.append(msg)
+                    }
+                }
+                
+                // return the results
+                completion(messages)
+            } else {
+                print("Error in retreving the MSGs data for the Chat from DB.")
+                completion([ChatMessage]())
+            }
+        }
+    }
 }
