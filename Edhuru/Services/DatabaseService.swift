@@ -233,4 +233,25 @@ class DatabaseService {
             }
         }
     }
+    
+    /// Send a message to the database
+    func sendMessage(msg: String, chat: Chat) {
+        
+        // check that it is a valid chat
+        guard chat.id != nil else {
+            return
+        }
+        
+        // get a reference to db
+        let db = Firestore.firestore()
+        
+        // add message doc
+        db.collection("chats")
+            .document(chat.id!)
+            .collection("msgs")
+            .addDocument(data: ["imageurl": "",
+                                "msg": msg,
+                                "senderid": AuthViewModel.getLoggedInUserID(),
+                                "timestamp": Date()])
+    }
 }
