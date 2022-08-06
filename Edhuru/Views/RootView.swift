@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct RootView: View {
+    @Environment(\.scenePhase) var scenePhase
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     @State var selectedTabs: Tabs = .contacts
     @State var isOnboarding = !AuthViewModel.isUserLoggedIn()
     @State var isChatShowing: Bool = false
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -40,7 +44,16 @@ struct RootView: View {
         } content: {
             ConversationsView(isChatShowing: $isChatShowing)
         }
-        
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                print("Active")
+            } else if newPhase == .inactive {
+                print("Inactive")
+            } else if newPhase == .background {
+                print("Background")
+                chatViewModel.chatListViewCleanup()
+            }
+        }
         
     }
 }

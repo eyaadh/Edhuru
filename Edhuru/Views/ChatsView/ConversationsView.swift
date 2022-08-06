@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ConversationsView: View {
     @EnvironmentObject var  chatViewModel: ChatViewModel
     @EnvironmentObject var contactsViewModel: ContactsViewModel
@@ -61,46 +62,54 @@ struct ConversationsView: View {
             Spacer()
             
             // chat log
-            ScrollView {
-                VStack(spacing: 24) {
-                    ForEach(chatViewModel.messages) { msg in
-                        
-                        let isFromUser = msg.senderid == AuthViewModel.getLoggedInUserID()
-                        
-                        // dynamic message
-                        HStack {
-                            if isFromUser {
-                                Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
-                                    .font(Font.smallText)
-                                    .foregroundColor(Color("text-timestamp"))
-                                    .padding(.trailing, 20)
-                                
-                                Spacer()
-                            }
-                            Text(msg.msg)
-                                .font(Font.bodyParagraph)
-                                .foregroundColor(isFromUser ? Color("text-button"):Color("text-primary"))
-                                .padding(.vertical, 16)
-                                .padding(.horizontal, 24)
-                                .background(isFromUser ? Color("bubble-primary"): Color("bubble-secondary"))
-                                .cornerRadius(30, corners: isFromUser ?  [.topLeft, .topRight, .bottomLeft]: [.topLeft, .topRight, .bottomRight])
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 24) {
+                        ForEach(Array(chatViewModel.messages.enumerated()), id: \.element) { index, msg in
                             
-                            if !isFromUser {
-                                Spacer()
+                            let isFromUser = msg.senderid == AuthViewModel.getLoggedInUserID()
+                            
+                            // dynamic message
+                            HStack {
+                                if isFromUser {
+                                    Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
+                                        .font(Font.smallText)
+                                        .foregroundColor(Color("text-timestamp"))
+                                        .padding(.trailing, 20)
+                                    
+                                    Spacer()
+                                }
+                                Text(msg.msg)
+                                    .font(Font.bodyParagraph)
+                                    .foregroundColor(isFromUser ? Color("text-button"):Color("text-primary"))
+                                    .padding(.vertical, 16)
+                                    .padding(.horizontal, 24)
+                                    .background(isFromUser ? Color("bubble-primary"): Color("bubble-secondary"))
+                                    .cornerRadius(30, corners: isFromUser ?  [.topLeft, .topRight, .bottomLeft]: [.topLeft, .topRight, .bottomRight])
+                                
+                                if !isFromUser {
+                                    Spacer()
 
-                                Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
-                                    .font(Font.smallText)
-                                    .foregroundColor(Color("text-timestamp"))
-                                    .padding(.leading, 20)
+                                    Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
+                                        .font(Font.smallText)
+                                        .foregroundColor(Color("text-timestamp"))
+                                        .padding(.leading, 20)
+                                }
                             }
+                            .id(index)
                         }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 24)
+                    
                 }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                
+                .background(Color("background"))
+                .onChange(of: chatViewModel.messages.count) { newCount in
+                    withAnimation {
+                        proxy.scrollTo(newCount - 1)
+                    }
+                }
             }
-            .background(Color("background"))
             
             // chat message bar
             ZStack {
@@ -177,6 +186,10 @@ struct ConversationsView: View {
             let ids = chatViewModel.getParticipantIDs()
             self.participants = contactsViewModel.getParticipants(ids: ids)
             
+        }
+        .onDisappear {
+            // close the listners and cleanup
+            chatViewModel.conversationViewCleanup()
         }
         
     }
