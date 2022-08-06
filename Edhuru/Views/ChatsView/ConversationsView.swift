@@ -127,9 +127,32 @@ struct ConversationsView: View {
                                     if msg.imageurl != "" {
                                         // show the photo message
                                         ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
+                                            .contextMenu{
+                                                Button {
+                                                    // save image to gallery
+                                                    
+                                                    ImageSaver.writeToPhotoAlbum(image: msg.imageurl!)
+                                                } label: {
+                                                    Label("Save to Gallery", systemImage: "square.and.arrow.down.on.square")
+                                                }
+
+                                                // Remove message button
+                                                Button {
+                                                    // TODO: Remove Message
+                                                } label: {
+                                                    Label("Remove Message.", systemImage: "trash")
+                                                }
+                                            }
                                     } else {
                                         // show the text message
                                         ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                            .contextMenu{
+                                                Button {
+                                                    // TODO: Remove Message
+                                                } label: {
+                                                    Label("Remove Message.", systemImage: "trash")
+                                                }
+                                            }
                                     }
                                     
                                     if !isFromUser {
@@ -310,7 +333,7 @@ struct ConversationsView: View {
         } content: {
             ContactsPicker(isContactsPickerShowing: $isContactsPickerShowing, selectedContacts: $participants)
         }
-
+        
         
     }
 }

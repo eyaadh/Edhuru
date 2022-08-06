@@ -36,43 +36,37 @@ class DatabaseService {
         // init the DB for querying
         let db = Firestore.firestore()
         
-        // Perform queries while we still have phone numbers to look up
-        while !lookupPhoneNumbers.isEmpty {
+        // divide the lookupPhoneNumbers array into equal chunks of 10 items
+        let chunkedLookupPhoneNumbers = lookupPhoneNumbers.chunked(into: 10)
+        
+        let group = DispatchGroup()
+        
+        // loop through the chunks and query the db to check for phone numbers that exists in the platform
+        for lookupPhoneNumbersChunk in chunkedLookupPhoneNumbers {
+            group.enter()
+            let query = db.collection("users").whereField("phone", in: lookupPhoneNumbersChunk)
             
-            // Get the first < 10 phone numbers to look up
-            let tenPhoneNumbers = Array(lookupPhoneNumbers.prefix(10))
-            
-            // Remove the < 10 that we're looking up
-            lookupPhoneNumbers = Array(lookupPhoneNumbers.dropFirst(10))
-            
-            // Look up the first 10
-            let query = db.collection("users").whereField("phone", in: tenPhoneNumbers)
-            
-            // Retrieve the users that are on the platform
-            query.getDocuments { snapshot, error in
+            // retrieve the users that are on the platform
+            query.getDocuments { snapshot, err in
                 
-                // Check for errors
-                if error == nil && snapshot != nil {
-                    
-                    // For each doc that was fetched, create a user
+                defer { group.leave() }
+                // check for errors
+                if err == nil && snapshot != nil {
+                    // for each doc that was fetched create a user for platformUsers array
                     for doc in snapshot!.documents {
-                        
                         if let user = try? doc.data(as: User.self) {
-                            
-                            // Append to the platform users array
                             platformUsers.append(user)
                         }
-                    }
-                    
-                    // Check if we have anymore phone numbers to look up
-                    // If not, we can call the completion block and we're done
-                    if lookupPhoneNumbers.isEmpty {
-                        // Return these users
-                        completion(platformUsers)
                     }
                 }
             }
         }
+        
+        // return these users
+        group.notify(queue: .main) {
+            completion(platformUsers)
+        }
+        
     }
     
     func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
@@ -330,7 +324,7 @@ class DatabaseService {
         
         // create a document for chat
         let doc = db.collection("chats").document()
-            
+        
         // set the data for document
         try? doc.setData(from: chat, completion: { error in
             // communicate the document id
