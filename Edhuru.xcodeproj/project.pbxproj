@@ -52,6 +52,7 @@
 		39B12C97289E8A7A00C8E24D /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C96289E8A7A00C8E24D /* CacheService.swift */; };
 		39B12C99289E9F8C00C8E24D /* ConversationTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */; };
 		39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */; };
+		39B12C9D289ED92700C8E24D /* ContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9C289ED92700C8E24D /* ContactsPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		39B12C96289E8A7A00C8E24D /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTextMessage.swift; sourceTree = "<group>"; };
 		39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPhotoMessage.swift; sourceTree = "<group>"; };
+		39B12C9C289ED92700C8E24D /* ContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 				39B12C94289D76A400C8E24D /* ChatListRow.swift */,
 				39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */,
 				39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */,
+				39B12C9C289ED92700C8E24D /* ContactsPicker.swift */,
 			);
 			path = ChatsView;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */,
+				39B12C9D289ED92700C8E24D /* ContactsPicker.swift in Sources */,
 				3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */,
 				39B12C86289CD83C00C8E24D /* ConversationsView.swift in Sources */,
 				39B12C8F289D1F3900C8E24D /* ChatViewModel.swift in Sources */,

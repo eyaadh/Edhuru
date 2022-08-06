@@ -21,113 +21,146 @@ struct ConversationsView: View {
     @State var selectedImage:UIImage?
     @State var isPickerShowing:Bool = false
     
+    @State var isContactsPickerShowing:Bool = false
+    
     @State var isSourceMenuShowing:Bool = false
     @State var source:UIImagePickerController.SourceType = .photoLibrary
     
     var body: some View {
-        VStack(spacing: 0){
-            // header
-            HStack {
-                // navigation buttons and chat name
-                VStack(alignment:.leading) {
-                    // back button
-                    Button {
-                        // dismiss conversations view
-                        isChatShowing = false
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width:24, height:24)
-                            .foregroundColor(Color("text-header"))
-                    }
-                    
-                    
-                    // users name
-                    if participants.count > 0 {
-                        let partipant = participants.first
-                        
-                        Text("\(partipant?.firstname ?? "") \(partipant?.lastname ?? "")")
-                            .font(Font.chatHeading)
-                            .foregroundColor(Color("text-header"))
-                    }
-                }
-                
-                Spacer()
-                
-                // profile image
-                if participants.count > 0 {
-                    let partipant = participants.first
-                    
-                    ProfilePicView(user: partipant!)
-                }
-            }
-            .frame(height: 104)
-            .padding(.horizontal)
+        ZStack {
+            Color("background")
+                .ignoresSafeArea()
             
-            Spacer()
-            
-            // chat log
-            ScrollViewReader { proxy in
-                ScrollView {
-                    VStack(spacing: 24) {
-                        ForEach(Array(chatViewModel.messages.enumerated()), id: \.element) { index, msg in
+            VStack(spacing: 0){
+                // header
+                ZStack {
+                    Color.white
+                        .ignoresSafeArea()
+                    
+                    HStack {
+                        // navigation buttons and chat name
+                        VStack(alignment:.leading) {
                             
-                            let isFromUser = msg.senderid == AuthViewModel.getLoggedInUserID()
-                            
-                            // dynamic message
                             HStack {
-                                if isFromUser {
-                                    Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
-                                        .font(Font.smallText)
-                                        .foregroundColor(Color("text-timestamp"))
-                                        .padding(.trailing, 20)
-                                    
-                                    Spacer()
+                                // back button
+                                Button {
+                                    // dismiss conversations view
+                                    isChatShowing = false
+                                } label: {
+                                    Image(systemName: "arrow.backward")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:24, height:24)
+                                        .foregroundColor(Color("text-header"))
                                 }
                                 
-                                if msg.imageurl != "" {
-                                    // show the photo message
-                                    ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
-                                } else {
-                                    // show the text message
-                                    ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
-                                }
-                                
-                                if !isFromUser {
-                                    Spacer()
-                                    
-                                    Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
-                                        .font(Font.smallText)
-                                        .foregroundColor(Color("text-timestamp"))
-                                        .padding(.leading, 20)
+                                // new message label for new conversations
+                                if self.participants.count == 0 {
+                                    Text("New Message")
+                                        .font(Font.chatHeading)
+                                        .foregroundColor(Color("text-header"))
                                 }
                             }
-                            .id(index)
+                            .padding(.bottom, 16)
+                            
+                            // users name
+                            if participants.count > 0 {
+                                let partipant = participants.first
+                                
+                                Text("\(partipant?.firstname ?? "") \(partipant?.lastname ?? "")")
+                                    .font(Font.chatHeading)
+                                    .foregroundColor(Color("text-header"))
+                            } else {
+                                Text("Recepient")
+                                    .font(Font.bodyParagraph)
+                                    .foregroundColor(Color("text-input"))
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        // profile image
+                        if participants.count > 0 {
+                            let partipant = participants.first
+                            
+                            ProfilePicView(user: partipant!)
+                        } else {
+                            // new message button
+                            Button {
+                                // show contact picker
+                                isContactsPickerShowing = true
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25,height: 25)
+                                    .foregroundColor(Color("button-primary"))
+                            }
                         }
                     }
                     .padding(.horizontal)
-                    .padding(.top, 24)
-                    
                 }
-                .background(Color("background"))
-                .onChange(of: chatViewModel.messages.count) { newCount in
-                    withAnimation {
-                        proxy.scrollTo(newCount - 1)
-                    }
-                }
-                .onAppear {
-                    withAnimation {
-                        proxy.scrollTo(chatViewModel.messages.count - 1)
-                    }
-                }
-            }
-            
-            // chat message bar
-            ZStack {
-                Color("background")
-                    .ignoresSafeArea()
+                .frame(height: 104)
                 
+                
+                Spacer()
+                
+                // chat log
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        VStack(spacing: 24) {
+                            ForEach(Array(chatViewModel.messages.enumerated()), id: \.element) { index, msg in
+                                
+                                let isFromUser = msg.senderid == AuthViewModel.getLoggedInUserID()
+                                
+                                // dynamic message
+                                HStack {
+                                    if isFromUser {
+                                        Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
+                                            .font(Font.smallText)
+                                            .foregroundColor(Color("text-timestamp"))
+                                            .padding(.trailing, 20)
+                                        
+                                        Spacer()
+                                    }
+                                    
+                                    if msg.imageurl != "" {
+                                        // show the photo message
+                                        ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
+                                    } else {
+                                        // show the text message
+                                        ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                    }
+                                    
+                                    if !isFromUser {
+                                        Spacer()
+                                        
+                                        Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
+                                            .font(Font.smallText)
+                                            .foregroundColor(Color("text-timestamp"))
+                                            .padding(.leading, 20)
+                                    }
+                                }
+                                .id(index)
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 24)
+                        
+                    }
+                    .onChange(of: chatViewModel.messages.count) { newCount in
+                        withAnimation {
+                            proxy.scrollTo(newCount - 1)
+                        }
+                    }
+                    .onAppear {
+                        withAnimation {
+                            proxy.scrollTo(chatViewModel.messages.count - 1)
+                        }
+                    }
+                }
+                
+                // chat message bar
                 HStack (spacing: 15) {
                     // camera button
                     Button {
@@ -178,20 +211,20 @@ struct ConversationsView: View {
                                 .padding(10)
                             
                             // Emoji button
-                            HStack {
-                                Spacer()
-                                
-                                Button {
-                                    // Emojis
-                                } label: {
-                                    Image(systemName: "face.smiling")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(Color("text-input"))
-                                }
-                            }
-                            .padding(.trailing, 12)
+                            //                        HStack {
+                            //                            Spacer()
+                            //
+                            //                            Button {
+                            //                                // Emojis
+                            //                            } label: {
+                            //                                Image(systemName: "face.smiling")
+                            //                                    .resizable()
+                            //                                    .scaledToFit()
+                            //                                    .frame(width: 24, height: 24)
+                            //                                    .foregroundColor(Color("text-input"))
+                            //                            }
+                            //                        }
+                            //                        .padding(.trailing, 12)
                         }
                     }
                     .frame(height: 44)
@@ -227,9 +260,10 @@ struct ConversationsView: View {
                     
                 }
                 .padding(.horizontal)
+                .frame(height: 76)
+                .disabled(participants.count == 0)
                 
             }
-            .frame(height: 76)
         }
         .onAppear {
             // call chat view model to retrieve all chat messages
@@ -268,6 +302,12 @@ struct ConversationsView: View {
             ImagePicker(selectedImage: $selectedImage,
                         isPickerShowing: $isPickerShowing, source: self.source)
         }
+        .sheet(isPresented: $isContactsPickerShowing) {
+            // on dismiss
+        } content: {
+            ContactsPicker(isContactsPickerShowing: $isContactsPickerShowing, selectedContacts: $participants)
+        }
+
         
     }
 }

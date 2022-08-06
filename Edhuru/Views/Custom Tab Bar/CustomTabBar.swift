@@ -14,6 +14,7 @@ enum Tabs:Int {
 
 struct CustomTabBar: View {
     @Binding var selectedTab:Tabs
+    @Binding var isChatShowing:Bool
     
     var body: some View {
         HStack(alignment: .center){
@@ -28,7 +29,9 @@ struct CustomTabBar: View {
             .tint(Color("icons-secondary"))
             
             Button {
-                AuthViewModel.logout()
+                // show the new conversation window
+                isChatShowing = true
+                
             } label: {
                 VStack(alignment: .center, spacing: 4) {
                     
@@ -59,6 +62,6 @@ struct CustomTabBar: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(selectedTab: .constant(.contacts))
+        CustomTabBar(selectedTab: .constant(.contacts), isChatShowing: .constant(false))
     }
 }
