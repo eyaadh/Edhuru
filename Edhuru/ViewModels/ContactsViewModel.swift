@@ -74,6 +74,7 @@ class ContactsViewModel: ObservableObject {
         }
     }
     
+    /// Given a list of ids for a chat return a list of user objects without the logged in user in the list that is returned
     func getParticipants(ids: [String]) -> [User] {
         
         // filter the users list for those users who are present in this chat i.e. ids passed in

@@ -9,24 +9,66 @@ import SwiftUI
 
 struct ChatsListView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @Binding var isChatShowing: Bool
     
     var body: some View {
-        if chatViewModel.chats.count > 0 {
-            List(chatViewModel.chats) { chat in
-                Button  {
-                    // set selected chat for the chatviewmodel
-                    chatViewModel.selectedChat = chat
-                    
-                    // display convertation view
-                    isChatShowing = true
+        VStack {
+            // heading
+            HStack{
+                Text("Chats")
+                    .font(Font.pageTitle)
+                
+                Spacer()
+                
+                Button {
+                    // TODO: Settings
                 } label: {
-                    Text(chat.id ?? "no chat id")
+                    Image(systemName: "gearshape.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .tint(Color("icons-secondary"))
                 }
             }
+            .padding(.top, 20)
+            .padding(.horizontal)
+            
+            // chat list
+            if chatViewModel.chats.count > 0 {
+                List(chatViewModel.chats) { chat in
+                    Button  {
+                        // set selected chat for the chatviewmodel
+                        chatViewModel.selectedChat = chat
+                        
+                        // display convertation view
+                        isChatShowing = true
+                    } label: {
+                        ChatListRow(chat: chat,
+                                    otherParticipants: contactsViewModel.getParticipants(ids: chat.participantids))
+                    }
+                    .buttonStyle(.plain)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                }
+                .listStyle(.plain)
+                
+            } else {
+                Spacer()
+                
+                Image("no-chats-yet")
+                
+                Text("Hmm... no chats here yet!")
+                    .font(Font.titleText)
+                    .padding(.top, 32)
+                
+                Text("Chat a friend to get started")
+                    .font(Font.bodyParagraph)
+                    .padding(.top, 8)
+                
+                Spacer()
+            }
         }
-        
     }
 }
 
@@ -34,5 +76,6 @@ struct ChatsListView_Previews: PreviewProvider {
     static var previews: some View {
         ChatsListView(isChatShowing: .constant(false))
             .environmentObject(ChatViewModel())
+            .environmentObject(ContactsViewModel())
     }
 }

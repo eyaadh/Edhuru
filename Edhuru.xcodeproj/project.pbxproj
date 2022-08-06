@@ -48,6 +48,7 @@
 		39B12C8D289D1D7400C8E24D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8C289D1D7300C8E24D /* Chat.swift */; };
 		39B12C8F289D1F3900C8E24D /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C8E289D1F3900C8E24D /* ChatViewModel.swift */; };
 		39B12C91289D53FD00C8E24D /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C90289D53FD00C8E24D /* DateHelper.swift */; };
+		39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C94289D76A400C8E24D /* ChatListRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		39B12C8C289D1D7300C8E24D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		39B12C8E289D1F3900C8E24D /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		39B12C90289D53FD00C8E24D /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		39B12C94289D76A400C8E24D /* ChatListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 			children = (
 				39B12C81289C2B5700C8E24D /* ChatsListView.swift */,
 				39B12C85289CD83C00C8E24D /* ConversationsView.swift */,
+				39B12C94289D76A400C8E24D /* ChatListRow.swift */,
 			);
 			path = ChatsView;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
+				39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */,
 				3945D11C289AE081005A70B9 /* OnboardingButtonStyle.swift in Sources */,
 				39B12C86289CD83C00C8E24D /* ConversationsView.swift in Sources */,
 				39B12C8F289D1F3900C8E24D /* ChatViewModel.swift in Sources */,
