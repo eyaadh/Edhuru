@@ -271,6 +271,58 @@ class DatabaseService {
             .setData(["updated": Date(), "lastmsg": msg], merge: true)
     }
     
+    /// Send a photo message to the database
+    func sendPhotoMessage(image: UIImage, chat: Chat) {
+        
+        // check that it is a valid chat
+        guard chat.id != nil else {
+            return
+        }
+        
+        // Create storage reference
+        let storageRef = Storage.storage().reference()
+        
+        // Turn our image into data
+        let imageData = image.jpegData(compressionQuality: 0.8)
+        
+        // Check that we were able to convert it to data
+        guard imageData != nil else {
+            return
+        }
+        
+        // Specify the file path and name
+        let path = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+        
+        let uploadTask = fileRef.putData(imageData!, metadata: nil) { meta, err in
+            if err == nil && meta != nil {
+                // get full url to image
+                fileRef.downloadURL { url, error in
+                    if error == nil && url != nil {
+                        // store a chat message
+                        
+                        // get a reference to db
+                        let db = Firestore.firestore()
+                        
+                        // add message doc
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .collection("msgs")
+                            .addDocument(data: ["imageurl": url!.absoluteString,
+                                                "msg": "",
+                                                "senderid": AuthViewModel.getLoggedInUserID(),
+                                                "timestamp": Date()])
+                        
+                        // update the chat document on DB with the new data
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .setData(["updated": Date(), "lastmsg": "image"], merge: true)
+                    }
+                }
+            }
+        }
+    }
+    
     func createChat(chat: Chat, completion: @escaping (String) -> Void) {
         
         // get a reference to the database

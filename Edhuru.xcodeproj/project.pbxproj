@@ -50,6 +50,8 @@
 		39B12C91289D53FD00C8E24D /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C90289D53FD00C8E24D /* DateHelper.swift */; };
 		39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C94289D76A400C8E24D /* ChatListRow.swift */; };
 		39B12C97289E8A7A00C8E24D /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C96289E8A7A00C8E24D /* CacheService.swift */; };
+		39B12C99289E9F8C00C8E24D /* ConversationTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */; };
+		39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,8 @@
 		39B12C90289D53FD00C8E24D /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		39B12C94289D76A400C8E24D /* ChatListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRow.swift; sourceTree = "<group>"; };
 		39B12C96289E8A7A00C8E24D /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTextMessage.swift; sourceTree = "<group>"; };
+		39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPhotoMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +263,8 @@
 				39B12C81289C2B5700C8E24D /* ChatsListView.swift */,
 				39B12C85289CD83C00C8E24D /* ConversationsView.swift */,
 				39B12C94289D76A400C8E24D /* ChatListRow.swift */,
+				39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */,
+				39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */,
 			);
 			path = ChatsView;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				39A19D69289AD76500B08027 /* PhoneNumberView.swift in Sources */,
 				394C1F65289A4B56004E8956 /* Fonts.swift in Sources */,
 				39A19D6B289AD76C00B08027 /* VerificationView.swift in Sources */,
+				39B12C99289E9F8C00C8E24D /* ConversationTextMessage.swift in Sources */,
 				39B12C8B289CED8300C8E24D /* RoundedCornerExtension.swift in Sources */,
 				39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */,
 				39B12C80289C2B4200C8E24D /* ContactsListView.swift in Sources */,
@@ -385,6 +392,7 @@
 				3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */,
 				3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */,
 				39B12C89289CDB7600C8E24D /* ProfilePicView.swift in Sources */,
+				39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,
 				39B12C84289C3A6F00C8E24D /* ContactRow.swift in Sources */,
 			);
