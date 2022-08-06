@@ -13,6 +13,8 @@ enum Tabs:Int {
 }
 
 struct CustomTabBar: View {
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     @Binding var selectedTab:Tabs
     @Binding var isChatShowing:Bool
     
@@ -29,6 +31,9 @@ struct CustomTabBar: View {
             .tint(Color("icons-secondary"))
             
             Button {
+                // clear the selected chat
+                chatViewModel.clearSelectChat()
+                
                 // show the new conversation window
                 isChatShowing = true
                 
@@ -63,5 +68,6 @@ struct CustomTabBar: View {
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
         CustomTabBar(selectedTab: .constant(.contacts), isChatShowing: .constant(false))
+            .environmentObject(ChatViewModel())
     }
 }

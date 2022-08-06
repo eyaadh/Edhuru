@@ -303,7 +303,10 @@ struct ConversationsView: View {
                         isPickerShowing: $isPickerShowing, source: self.source)
         }
         .sheet(isPresented: $isContactsPickerShowing) {
-            // on dismiss
+            // on dismiss load the chat with selected contact
+            if let participant = participants.first {
+                chatViewModel.getChatFor(contact: participant)
+            }
         } content: {
             ContactsPicker(isContactsPickerShowing: $isContactsPickerShowing, selectedContacts: $participants)
         }
