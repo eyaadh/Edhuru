@@ -37,6 +37,10 @@ struct SyncContactsView: View {
             .padding(.bottom, 87)
         }
         .padding(.horizontal)
+        .onAppear {
+            // Get Local Contacts
+            contactsViewModel.getLocalContacts()
+        }
     }
 }
 

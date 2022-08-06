@@ -94,10 +94,6 @@ struct ContactsListView: View {
             
         }
         .padding(.horizontal)
-        .onAppear {
-            // Get Local Contacts
-            contactsViewModel.getLocalContacts()
-        }
     }
 }
 

@@ -20,31 +20,46 @@ struct ProfilePicView: View {
                         .bold()
                 }
             } else {
-                // profile unage
-                AsyncImage(url: URL(string: user.photo ?? "")) { phase in
-                    switch phase {
-                    case .empty:
-                        // currently fetching
-                        ProgressView()
-                    case .success(let image):
-                        // display the fetched image
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(Circle())
-                        
-                    case .failure:
-                        // couldnt fetch profile photo
-                        // display a circle with first letter of first name
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                            Text(user.firstname?.prefix(1) ?? "")
-                                .bold()
+                // profile image
+                // check image cache if the profile pic exists, if so use it
+                if let cachedImage = CacheService.getImage(forKey: user.photo!) {
+                    cachedImage
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                } else {
+                    // otherwise, if not in cache download it
+                    AsyncImage(url: URL(string: user.photo ?? "")) { phase in
+                        switch phase {
+                        case .empty:
+                            // currently fetching
+                            ProgressView()
+                        case .success(let image):
+                            // display the fetched image
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .onAppear {
+                                    // once downloaded save it in cache
+                                    CacheService.setImage(image: image,
+                                                          forKey: user.photo!)
+                                }
+                            
+                        case .failure:
+                            // couldnt fetch profile photo
+                            // display a circle with first letter of first name
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                Text(user.firstname?.prefix(1) ?? "")
+                                    .bold()
+                            }
+                            
                         }
-                        
                     }
                 }
+                
             }
             // border
             Circle()

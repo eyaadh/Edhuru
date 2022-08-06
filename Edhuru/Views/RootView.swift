@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var chatViewModel: ChatViewModel
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @State var selectedTabs: Tabs = .contacts
     @State var isOnboarding = !AuthViewModel.isUserLoggedIn()
@@ -34,6 +35,13 @@ struct RootView: View {
                 CustomTabBar(selectedTab: $selectedTabs)
             }
         }
+        .onAppear (perform: {
+            // Get Local Contacts
+            if !isOnboarding {
+                contactsViewModel.getLocalContacts()
+            }
+            
+        })
         .fullScreenCover(isPresented: $isOnboarding) {
             // on dismiss
         } content: {
