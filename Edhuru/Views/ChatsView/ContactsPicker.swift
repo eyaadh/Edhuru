@@ -36,14 +36,22 @@ struct ContactsPicker: View {
                                 Button {
                                     // toggle the user to be selected or not
                                     if isSelectedContact {
-                                        // remove the contacts from selected contact list
-                                        selectedContacts.removeAll()
-                                    } else {
-                                        // remove all the other contacts
-                                        selectedContacts.removeAll()
+                                        // find the index of the selected user
+                                        let index = selectedContacts.firstIndex(of: user)
                                         
-                                        // otherwise add the contact to selected contact list
-                                        selectedContacts.append(user)
+                                        // remove the contacts from selected contact list
+                                        if let index = index {
+                                            selectedContacts.remove(at: index)
+                                        }
+                                        
+                                    } else {
+                                        // only allow a group chat of 4 including u
+                                        if selectedContacts.count < 3 {
+                                            // otherwise add the contact to selected contact list
+                                            selectedContacts.append(user)
+                                        } else {
+                                            // TODO: warn the user that limit has reached.
+                                        }
                                     }
                                 } label: {
                                     Image(systemName: isSelectedContact ? "checkmark.circle.fill":"checkmark.circle")

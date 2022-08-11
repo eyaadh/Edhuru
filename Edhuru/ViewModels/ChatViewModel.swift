@@ -36,16 +36,21 @@ class ChatViewModel: ObservableObject {
         }
     }
     
-    /// Search for chat with passed in user, if found update the selected chat, if not found create a new chat
-    func getChatFor(contact: User) {
+    /// Search for chat with passed in users, if found update the selected chat, if not found create a new chat
+    func getChatFor(contacts: [User]) {
         
         // validate the user
-        guard contact.id != nil else {
-            return
+        for contact in contacts {
+            if contact.id == nil {return}
         }
         
+        
+        // create a set from the ids of the contacts passed in
+        let setOfContactsIds = Set(contacts.map { u in u.id!})
+        
         let foundChat = chats.filter { chat in
-            return chat.numparticipants == 2 && chat.participantids.contains(contact.id!)
+            let setOfParticipantIds = Set(chat.participantids)
+            return chat.numparticipants == contacts.count + 1 && setOfContactsIds.isSubset(of: setOfParticipantIds)
         }
         
         // found an existing chat
@@ -56,10 +61,15 @@ class ChatViewModel: ObservableObject {
             getMessages()
         } else {
             // when there isnt one, create a chat
+            
+            // create an array of ids of all participants for the chat
+            var allParticipantIds = contacts.map { u in u.id! }
+            allParticipantIds.append(AuthViewModel.getLoggedInUserID())
+            
             let newChat = Chat(
                 id: nil,
-                numparticipants: 2,
-                participantids: [AuthViewModel.getLoggedInUserID(), contact.id!],
+                numparticipants: allParticipantIds.count,
+                participantids: allParticipantIds,
                 lastmsg: nil,
                 updated: nil,
                 msgs: nil)
@@ -71,8 +81,8 @@ class ChatViewModel: ObservableObject {
             // update the selected chat with a chat id from the data we get off callback of the createChat func on dbservice
             databaseService.createChat(chat: newChat) { docid in
                 self.selectedChat = Chat(id: docid,
-                                         numparticipants: 2,
-                                         participantids: [AuthViewModel.getLoggedInUserID(), contact.id!],
+                                         numparticipants: allParticipantIds.count,
+                                         participantids: allParticipantIds,
                                          lastmsg: nil,
                                          updated: nil,
                                          msgs: nil)
