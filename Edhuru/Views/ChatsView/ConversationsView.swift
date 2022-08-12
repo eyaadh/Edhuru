@@ -34,7 +34,7 @@ struct ConversationsView: View {
             VStack(spacing: 0){
                 // header
                 ZStack {
-                    Color.white
+                    Color("view-header-background")
                         .ignoresSafeArea()
                     
                     HStack {

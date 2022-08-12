@@ -24,6 +24,10 @@
 		394C1F62289A4A73004E8956 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F5F289A4A73004E8956 /* LexendDeca-Regular.ttf */; };
 		394C1F65289A4B56004E8956 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F64289A4B56004E8956 /* Fonts.swift */; };
 		394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F67289A6922004E8956 /* CustomTabBar.swift */; };
+		397500FA28A6DFFA00924651 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 397500F928A6DFF900924651 /* GoogleService-Info.plist */; };
+		397500FD28A6E05A00924651 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397500FC28A6E05A00924651 /* SettingsView.swift */; };
+		397500FF28A6F29700924651 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397500FE28A6F29700924651 /* SettingsViewModel.swift */; };
+		3975010128A6F32F00924651 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975010028A6F32F00924651 /* Constants.swift */; };
 		39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D4D289A6F7800B08027 /* TabBarButton.swift */; };
 		39A19D53289A8EC500B08027 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D52289A8EC500B08027 /* FirebaseAuth */; };
 		39A19D55289A8EC600B08027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D54289A8EC600B08027 /* FirebaseFirestore */; };
@@ -52,7 +56,6 @@
 		39B12C99289E9F8C00C8E24D /* ConversationTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */; };
 		39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */; };
 		39B12C9D289ED92700C8E24D /* ContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9C289ED92700C8E24D /* ContactsPicker.swift */; };
-		39B7F56D28A573A300ED49B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */; };
 		39D5893828A5689E008BE016 /* GroupProfilePicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5893728A5689E008BE016 /* GroupProfilePicView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +79,10 @@
 		394C1F63289A4A81004E8956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		394C1F64289A4B56004E8956 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		394C1F67289A6922004E8956 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		397500F928A6DFF900924651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		397500FC28A6E05A00924651 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		397500FE28A6F29700924651 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3975010028A6F32F00924651 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		39A19D4D289A6F7800B08027 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		39A19D5C289A8F2300B08027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39A19D5E289AD16900B08027 /* Edhuru.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Edhuru.entitlements; sourceTree = "<group>"; };
@@ -100,7 +107,6 @@
 		39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTextMessage.swift; sourceTree = "<group>"; };
 		39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPhotoMessage.swift; sourceTree = "<group>"; };
 		39B12C9C289ED92700C8E24D /* ContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPicker.swift; sourceTree = "<group>"; };
-		39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39D5893728A5689E008BE016 /* GroupProfilePicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfilePicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				39A19D5E289AD16900B08027 /* Edhuru.entitlements */,
-				39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */,
+				397500F928A6DFF900924651 /* GoogleService-Info.plist */,
 				394C1F63289A4A81004E8956 /* Info.plist */,
 				39A19D5C289A8F2300B08027 /* AppDelegate.swift */,
 				394C1F49289A4679004E8956 /* EdhuruApp.swift */,
@@ -171,6 +177,7 @@
 				39A19D61289AD5F000B08027 /* Onboarding */,
 				39B12C7D289C2ADC00C8E24D /* ContactsView */,
 				39B12C7E289C2AE800C8E24D /* ChatsView */,
+				397500FB28A6E04100924651 /* Settings */,
 				39B12C87289CDB5200C8E24D /* Misc */,
 				394C1F66289A68F4004E8956 /* Custom Tab Bar */,
 			);
@@ -183,6 +190,7 @@
 				39A19D5F289AD33900B08027 /* AuthViewModel.swift */,
 				3945D120289B7F3D005A70B9 /* ContactsViewModel.swift */,
 				39B12C8E289D1F3900C8E24D /* ChatViewModel.swift */,
+				397500FE28A6F29700924651 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -216,6 +224,7 @@
 				3945D126289B88C5005A70B9 /* TextHelper.swift */,
 				3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */,
 				39B12C90289D53FD00C8E24D /* DateHelper.swift */,
+				3975010028A6F32F00924651 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -236,6 +245,14 @@
 				394C1F67289A6922004E8956 /* CustomTabBar.swift */,
 			);
 			path = "Custom Tab Bar";
+			sourceTree = "<group>";
+		};
+		397500FB28A6E04100924651 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				397500FC28A6E05A00924651 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		39A19D61289AD5F000B08027 /* Onboarding */ = {
@@ -356,7 +373,7 @@
 				394C1F51289A467A004E8956 /* Preview Assets.xcassets in Resources */,
 				394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */,
 				394C1F60289A4A73004E8956 /* LexendDeca-Bold.ttf in Resources */,
-				39B7F56D28A573A300ED49B4 /* GoogleService-Info.plist in Resources */,
+				397500FA28A6DFFA00924651 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +389,9 @@
 				39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */,
 				3945D12B289BB20B005A70B9 /* ImagePicker.swift in Sources */,
 				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
+				397500FF28A6F29700924651 /* SettingsViewModel.swift in Sources */,
 				39D5893828A5689E008BE016 /* GroupProfilePicView.swift in Sources */,
+				397500FD28A6E05A00924651 /* SettingsView.swift in Sources */,
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */,
@@ -385,6 +404,7 @@
 				39A19D67289AD75900B08027 /* WelcomeView.swift in Sources */,
 				39B12C82289C2B5700C8E24D /* ChatsListView.swift in Sources */,
 				3945D123289B84BD005A70B9 /* User.swift in Sources */,
+				3975010128A6F32F00924651 /* Constants.swift in Sources */,
 				39B12C91289D53FD00C8E24D /* DateHelper.swift in Sources */,
 				39A19D60289AD33900B08027 /* AuthViewModel.swift in Sources */,
 				39B12C97289E8A7A00C8E24D /* CacheService.swift in Sources */,

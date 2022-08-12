@@ -9,6 +9,9 @@ import SwiftUI
 import Combine
 
 struct VerificationView: View {
+    @EnvironmentObject var contactsModel: ContactsViewModel
+    @EnvironmentObject var chatModel: ChatViewModel
+    
     @Binding var currentStep: OnboardingStep
     @Binding var isOnboarding: Bool
     @State var verifcationCode = ""
@@ -65,6 +68,12 @@ struct VerificationView: View {
                                 // End the onboarding since the user is logging for the second time
                                 // use the prior profile
                                 isOnboarding = false
+                                
+                                // load the contacts
+                                contactsModel.getLocalContacts()
+                                
+                                // load chats
+                                chatModel.getChats()
                             } else {
                                 // goto Next Step on onboarding - profile creation
                                 currentStep = .profile

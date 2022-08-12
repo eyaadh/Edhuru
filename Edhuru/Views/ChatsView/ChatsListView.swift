@@ -12,6 +12,7 @@ struct ChatsListView: View {
     @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @Binding var isChatShowing: Bool
+    @Binding var isSettingShowing: Bool
     
     var body: some View {
         VStack {
@@ -23,7 +24,8 @@ struct ChatsListView: View {
                 Spacer()
                 
                 Button {
-                    // TODO: Settings
+                    // Show Settings
+                    isSettingShowing = true
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -74,7 +76,7 @@ struct ChatsListView: View {
 
 struct ChatsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsListView(isChatShowing: .constant(false))
+        ChatsListView(isChatShowing: .constant(false), isSettingShowing: .constant(false))
             .environmentObject(ChatViewModel())
             .environmentObject(ContactsViewModel())
     }

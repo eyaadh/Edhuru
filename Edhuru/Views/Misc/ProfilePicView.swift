@@ -18,6 +18,7 @@ struct ProfilePicView: View {
                         .foregroundColor(.white)
                     Text(user.firstname?.prefix(1) ?? "")
                         .bold()
+                        .foregroundColor(Color("text-secondary"))
                 }
             } else {
                 // profile image
@@ -54,6 +55,7 @@ struct ProfilePicView: View {
                                     .foregroundColor(.white)
                                 Text(user.firstname?.prefix(1) ?? "")
                                     .bold()
+                                    .foregroundColor(Color("text-secondary"))
                             }
                             
                         }
