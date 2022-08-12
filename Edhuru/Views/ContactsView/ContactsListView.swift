@@ -25,6 +25,7 @@ struct ContactsListView: View {
                 
                 Button {
                     // TODO: Settings
+                    AuthViewModel.logout()
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()

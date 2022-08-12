@@ -140,6 +140,19 @@ struct ConversationsView: View {
                                             .padding(.trailing, 20)
                                         
                                         Spacer()
+                                    } else if participants.count > 1 {
+                                        // this is a group chat and not a message from the user
+                                        // display profile photo
+                                        
+                                        let userOfMsg = participants.filter { p in
+                                            p.id == msg.senderid
+                                        }.first
+                                        
+                                        if let userOfMsg = userOfMsg {
+                                            ProfilePicView(user: userOfMsg)
+                                                .padding(.trailing, 16)
+                                        }
+                                        
                                     }
                                     
                                     if msg.imageurl != "" {
@@ -147,7 +160,22 @@ struct ConversationsView: View {
                                         ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
                                     } else {
                                         // show the text message
-                                        ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                        // also determine if its a group chat and anther user
+                                        if participants.count > 1 && !isFromUser {
+                                            // show the text message with name
+                                            
+                                            let userOfMsg = participants.filter { p in
+                                                p.id == msg.senderid
+                                            }.first
+                                            
+                                            ConversationTextMessage(msg: msg.msg,
+                                                                    isFromUser: isFromUser,
+                                                                    name: "\(userOfMsg?.firstname ?? "") \(userOfMsg?.lastname ?? "")")
+                                        } else {
+                                            ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                        }
+                                        
+                                        
                                     }
                                     
                                     if !isFromUser {
@@ -167,13 +195,9 @@ struct ConversationsView: View {
                         
                     }
                     .onChange(of: chatViewModel.messages.count) { newCount in
+                        
                         withAnimation {
                             proxy.scrollTo(newCount - 1)
-                        }
-                    }
-                    .onAppear {
-                        withAnimation {
-                            proxy.scrollTo(chatViewModel.messages.count - 1)
                         }
                     }
                 }

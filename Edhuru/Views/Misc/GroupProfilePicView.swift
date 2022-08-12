@@ -20,5 +20,6 @@ struct GroupProfilePicView: View {
             }
             
         }
+        .offset(x: CGFloat((users.count - 1) * abs(offset) / 2))
     }
 }

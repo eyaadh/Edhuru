@@ -89,6 +89,9 @@ class ChatViewModel: ObservableObject {
                 
                 // also add this chat to the chats list
                 self.chats.append(self.selectedChat!)
+                
+                // also fetch the messages
+                self.getMessages()
             }
         }
         
