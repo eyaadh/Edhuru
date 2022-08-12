@@ -25,6 +25,7 @@ struct ContactsListView: View {
                 
                 Button {
                     // TODO: Settings
+                    AuthViewModel.logout()
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -61,7 +62,7 @@ struct ContactsListView: View {
                     Button {
                         
                         // search for the existing conversation with the required user
-                        chatViewModel.getChatFor(contact: user)
+                        chatViewModel.getChatFor(contacts: [user])
                         
                         // display conversations view
                         isChatViewShowing = true

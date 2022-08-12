@@ -25,6 +25,10 @@ extension Font {
         return Font.custom("LexendDeca-Regular", size: 12)
     }
     
+    public static var chatName: Font {
+        return Font.custom("LexendDeca-SemiBold", size: 12)
+    }
+    
     public static var settings: Font {
         return Font.custom("LexendDeca-Regular", size: 16)
     }

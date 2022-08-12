@@ -21,7 +21,5 @@
 	</array>
 	<key>NSContactsUsageDescription</key>
 	<string>${PRODUCT_NAME}  requires to sync your local contacts to chat with them.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>${PRODUCT_NAME}  requires access to photos to download photos to your library from chats.</string>
 </dict>
 </plist>

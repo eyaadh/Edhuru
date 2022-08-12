@@ -67,9 +67,23 @@ struct ConversationsView: View {
                             if participants.count > 0 {
                                 let partipant = participants.first
                                 
-                                Text("\(partipant?.firstname ?? "") \(partipant?.lastname ?? "")")
-                                    .font(Font.chatHeading)
-                                    .foregroundColor(Color("text-header"))
+                                Group {
+                                    if participants.count == 1 {
+                                        Text("\(partipant?.firstname ?? "") \(partipant?.lastname ?? "")")
+                                    } else if participants.count == 2 {
+                                        let participant2 = participants[1]
+                                        
+                                        Text("\(partipant?.firstname ?? ""), \(participant2.firstname ?? "")")
+                                    } else if participants.count > 2 {
+                                        let participant2 = participants[1]
+
+                                        Text("\(partipant?.firstname ?? ""), \(participant2.firstname ?? "") + \(participants.count - 2) others")
+                                    }
+                                }
+                                .font(Font.chatHeading)
+                                .foregroundColor(Color("text-header"))
+                                
+                                
                             } else {
                                 Text("Recepient")
                                     .font(Font.bodyParagraph)
@@ -80,10 +94,14 @@ struct ConversationsView: View {
                         Spacer()
                         
                         // profile image
-                        if participants.count > 0 {
+                        if participants.count == 1 {
                             let partipant = participants.first
                             
                             ProfilePicView(user: partipant!)
+                        } else if participants.count > 1 {
+                            // display group profiles
+                            
+                            GroupProfilePicView(users: participants)
                         } else {
                             // new message button
                             Button {
@@ -122,37 +140,42 @@ struct ConversationsView: View {
                                             .padding(.trailing, 20)
                                         
                                         Spacer()
+                                    } else if participants.count > 1 {
+                                        // this is a group chat and not a message from the user
+                                        // display profile photo
+                                        
+                                        let userOfMsg = participants.filter { p in
+                                            p.id == msg.senderid
+                                        }.first
+                                        
+                                        if let userOfMsg = userOfMsg {
+                                            ProfilePicView(user: userOfMsg)
+                                                .padding(.trailing, 16)
+                                        }
+                                        
                                     }
                                     
                                     if msg.imageurl != "" {
                                         // show the photo message
                                         ConversationPhotoMessage(imageUrl: msg.imageurl!, isFromUser: isFromUser)
-                                            .contextMenu{
-                                                Button {
-                                                    // save image to gallery
-                                                    
-                                                    ImageSaver.writeToPhotoAlbum(image: msg.imageurl!)
-                                                } label: {
-                                                    Label("Save to Gallery", systemImage: "square.and.arrow.down.on.square")
-                                                }
-
-                                                // Remove message button
-                                                Button {
-                                                    // TODO: Remove Message
-                                                } label: {
-                                                    Label("Remove Message.", systemImage: "trash")
-                                                }
-                                            }
                                     } else {
                                         // show the text message
-                                        ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
-                                            .contextMenu{
-                                                Button {
-                                                    // TODO: Remove Message
-                                                } label: {
-                                                    Label("Remove Message.", systemImage: "trash")
-                                                }
-                                            }
+                                        // also determine if its a group chat and anther user
+                                        if participants.count > 1 && !isFromUser {
+                                            // show the text message with name
+                                            
+                                            let userOfMsg = participants.filter { p in
+                                                p.id == msg.senderid
+                                            }.first
+                                            
+                                            ConversationTextMessage(msg: msg.msg,
+                                                                    isFromUser: isFromUser,
+                                                                    name: "\(userOfMsg?.firstname ?? "") \(userOfMsg?.lastname ?? "")")
+                                        } else {
+                                            ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                        }
+                                        
+                                        
                                     }
                                     
                                     if !isFromUser {
@@ -172,13 +195,9 @@ struct ConversationsView: View {
                         
                     }
                     .onChange(of: chatViewModel.messages.count) { newCount in
+                        
                         withAnimation {
                             proxy.scrollTo(newCount - 1)
-                        }
-                    }
-                    .onAppear {
-                        withAnimation {
-                            proxy.scrollTo(chatViewModel.messages.count - 1)
                         }
                     }
                 }
@@ -326,14 +345,12 @@ struct ConversationsView: View {
                         isPickerShowing: $isPickerShowing, source: self.source)
         }
         .sheet(isPresented: $isContactsPickerShowing) {
-            // on dismiss load the chat with selected contact
-            if let participant = participants.first {
-                chatViewModel.getChatFor(contact: participant)
-            }
+            // on dismiss load the chat with selected contacts
+            chatViewModel.getChatFor(contacts: participants)
         } content: {
             ContactsPicker(isContactsPickerShowing: $isContactsPickerShowing, selectedContacts: $participants)
         }
-        
+
         
     }
 }

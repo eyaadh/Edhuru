@@ -24,9 +24,7 @@
 		394C1F62289A4A73004E8956 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 394C1F5F289A4A73004E8956 /* LexendDeca-Regular.ttf */; };
 		394C1F65289A4B56004E8956 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F64289A4B56004E8956 /* Fonts.swift */; };
 		394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C1F67289A6922004E8956 /* CustomTabBar.swift */; };
-		3977E5BA289F03EA0030DA01 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977E5B9289F03EA0030DA01 /* ImageSaver.swift */; };
 		39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D4D289A6F7800B08027 /* TabBarButton.swift */; };
-		39A19D50289A8DDD00B08027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A19D4F289A8DDD00B08027 /* GoogleService-Info.plist */; };
 		39A19D53289A8EC500B08027 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D52289A8EC500B08027 /* FirebaseAuth */; };
 		39A19D55289A8EC600B08027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D54289A8EC600B08027 /* FirebaseFirestore */; };
 		39A19D57289A8EC600B08027 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D56289A8EC600B08027 /* FirebaseFirestoreSwift */; };
@@ -54,6 +52,8 @@
 		39B12C99289E9F8C00C8E24D /* ConversationTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */; };
 		39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */; };
 		39B12C9D289ED92700C8E24D /* ContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B12C9C289ED92700C8E24D /* ContactsPicker.swift */; };
+		39B7F56D28A573A300ED49B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */; };
+		39D5893828A5689E008BE016 /* GroupProfilePicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5893728A5689E008BE016 /* GroupProfilePicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,9 +76,7 @@
 		394C1F63289A4A81004E8956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		394C1F64289A4B56004E8956 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		394C1F67289A6922004E8956 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		3977E5B9289F03EA0030DA01 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		39A19D4D289A6F7800B08027 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
-		39A19D4F289A8DDD00B08027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39A19D5C289A8F2300B08027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39A19D5E289AD16900B08027 /* Edhuru.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Edhuru.entitlements; sourceTree = "<group>"; };
 		39A19D5F289AD33900B08027 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +100,8 @@
 		39B12C98289E9F8C00C8E24D /* ConversationTextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTextMessage.swift; sourceTree = "<group>"; };
 		39B12C9A289EA0AD00C8E24D /* ConversationPhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPhotoMessage.swift; sourceTree = "<group>"; };
 		39B12C9C289ED92700C8E24D /* ContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPicker.swift; sourceTree = "<group>"; };
+		39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		39D5893728A5689E008BE016 /* GroupProfilePicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfilePicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				39A19D5E289AD16900B08027 /* Edhuru.entitlements */,
+				39B7F56C28A573A300ED49B4 /* GoogleService-Info.plist */,
 				394C1F63289A4A81004E8956 /* Info.plist */,
-				39A19D4F289A8DDD00B08027 /* GoogleService-Info.plist */,
 				39A19D5C289A8F2300B08027 /* AppDelegate.swift */,
 				394C1F49289A4679004E8956 /* EdhuruApp.swift */,
 				394C1F57289A469D004E8956 /* Views */,
@@ -216,7 +216,6 @@
 				3945D126289B88C5005A70B9 /* TextHelper.swift */,
 				3945D128289B9036005A70B9 /* ArrayChunkExtension.swift */,
 				39B12C90289D53FD00C8E24D /* DateHelper.swift */,
-				3977E5B9289F03EA0030DA01 /* ImageSaver.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -279,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				39B12C88289CDB7600C8E24D /* ProfilePicView.swift */,
+				39D5893728A5689E008BE016 /* GroupProfilePicView.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -356,7 +356,7 @@
 				394C1F51289A467A004E8956 /* Preview Assets.xcassets in Resources */,
 				394C1F4E289A467A004E8956 /* Assets.xcassets in Resources */,
 				394C1F60289A4A73004E8956 /* LexendDeca-Bold.ttf in Resources */,
-				39A19D50289A8DDD00B08027 /* GoogleService-Info.plist in Resources */,
+				39B7F56D28A573A300ED49B4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +372,7 @@
 				39A19D5D289A8F2400B08027 /* AppDelegate.swift in Sources */,
 				3945D12B289BB20B005A70B9 /* ImagePicker.swift in Sources */,
 				39A19D65289AD63100B08027 /* OnboardingContainerView.swift in Sources */,
+				39D5893828A5689E008BE016 /* GroupProfilePicView.swift in Sources */,
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */,
@@ -398,7 +399,6 @@
 				3945D121289B7F3D005A70B9 /* ContactsViewModel.swift in Sources */,
 				3945D129289B9036005A70B9 /* ArrayChunkExtension.swift in Sources */,
 				3945D11F289AE955005A70B9 /* CreateProfileTextFiledStyle.swift in Sources */,
-				3977E5BA289F03EA0030DA01 /* ImageSaver.swift in Sources */,
 				39B12C89289CDB7600C8E24D /* ProfilePicView.swift in Sources */,
 				39B12C9B289EA0AD00C8E24D /* ConversationPhotoMessage.swift in Sources */,
 				394C1F4A289A4679004E8956 /* EdhuruApp.swift in Sources */,

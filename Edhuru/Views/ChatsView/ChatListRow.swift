@@ -21,13 +21,41 @@ struct ChatListRow: View {
             
             // Profile Image of participant
             if let participant = participant {
-                ProfilePicView(user: participant)
+                
+                if otherParticipants != nil && otherParticipants!.count == 1 {
+                    // display single pp
+                    ProfilePicView(user: participant)
+                } else if otherParticipants != nil && otherParticipants!.count > 1 {
+                    // Display group pic image
+                    GroupProfilePicView(users: otherParticipants!)
+                }
+                
                 
                 VStack(alignment: .leading, spacing: 4){
                     // Name
-                    Text("\(participant.firstname ?? "") \(participant.lastname ?? "")")
+                    if let otherParticipants = otherParticipants {
+                        Group {
+                            if otherParticipants.count == 1 {
+                                Text("\(participant.firstname ?? "") \(participant.lastname ?? "")")
+                                
+                            } else if otherParticipants.count == 2 {
+                                let participant2 = otherParticipants[1]
+                            
+                                Text("\(participant.firstname ?? "") \(participant2.firstname ?? "")")
+                                    
+                            } else if otherParticipants.count > 2 {
+                                let participant2 = otherParticipants[1]
+                                
+                                Text("\(participant.firstname ?? "") \(participant2.firstname ?? "") + \(otherParticipants.count - 2 ) others")
+                                    
+                            }
+                        }
                         .font(Font.button)
                         .foregroundColor(Color("text-primary"))
+                        
+                        
+                    }
+                    
                     // phoneNumber
                     Text(chat.lastmsg ?? "")
                         .font(Font.bodyParagraph)
