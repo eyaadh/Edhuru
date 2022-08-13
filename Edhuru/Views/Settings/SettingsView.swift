@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var settingsViewModel: SettingsViewModel
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @Binding var isSettingsShowing: Bool
     @Binding var isOnboarding: Bool
@@ -26,8 +27,30 @@ struct SettingsView: View {
             VStack {
                 // heading
                 HStack{
-                    Text("Settings")
-                        .font(Font.pageTitle)
+                    // collect in logged in user details
+                    let loggedUser = contactsViewModel.getParticipants(ids: [AuthViewModel.getLoggedInUserID()]).first
+                    
+                    VStack(alignment: .leading){
+                        Text("Settings")
+                            .font(Font.pageTitle)
+                            .padding(.bottom, 6)
+                        
+                        // show logged in user details within the header
+                        if let loggedUser = loggedUser {
+                            Button {
+                                // TODO: Allow logged in user to update their profile
+                            } label: {
+                                HStack {
+                                    ProfilePicView(user: loggedUser)
+                                    
+                                    Text("\(loggedUser.firstname ?? "") \(loggedUser.lastname ?? "") (+\(loggedUser.phone ?? ""))")
+                                        .font(Font.bodyParagraph)
+                                        .foregroundColor(Color("text-input"))
+                                }
+                            }
+                        }
+                    }
+                    
                     
                     Spacer()
                     
