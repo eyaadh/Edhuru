@@ -39,20 +39,34 @@ struct ChatsListView: View {
             // chat list
             if chatViewModel.chats.count > 0 {
                 List(chatViewModel.chats) { chat in
-                    Button  {
-                        // set selected chat for the chatviewmodel
-                        chatViewModel.selectedChat = chat
+                    
+                    // do not add logged in users id in other partipants IDs array
+                    let otherParticipantIDs = chat.participantids.filter { $0 != AuthViewModel.getLoggedInUserID() }
+                    let otherParticipants = contactsViewModel.getParticipants(ids: otherParticipantIDs)
+                    
+                    // detect if it is a chat with a deleted user, if so do not list the chat
+                    if let otherParticipant = otherParticipants.first,
+                        chat.numparticipants == 2,
+                        !otherParticipant.isactive {
                         
-                        // display convertation view
-                        isChatShowing = true
-                    } label: {
-                        let otherParticipantIDs = chat.participantids.filter { $0 != AuthViewModel.getLoggedInUserID() }
-                        ChatListRow(chat: chat,
-                                    otherParticipants: contactsViewModel.getParticipants(ids: otherParticipantIDs))
+                        // this is a conversation with a deleted user, do not show this in chat list
+                        
+                    } else {
+                        Button  {
+                            // set selected chat for the chatviewmodel
+                            chatViewModel.selectedChat = chat
+                            
+                            // display convertation view
+                            isChatShowing = true
+                        } label: {
+                            
+                            ChatListRow(chat: chat,
+                                        otherParticipants: otherParticipants)
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
-                    .buttonStyle(.plain)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 

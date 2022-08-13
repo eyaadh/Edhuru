@@ -12,6 +12,7 @@ struct ConversationTextMessage: View {
     var msg: String
     var isFromUser: Bool
     var name: String?
+    var isActive: Bool = true
     
     var body: some View {
         
@@ -24,7 +25,7 @@ struct ConversationTextMessage: View {
             }
             
             // text
-            Text(msg)
+            Text(isActive ? msg : "Message Deleted")
                 .font(Font.bodyParagraph)
                 .foregroundColor(isFromUser ? Color("text-button"):Color("text-secondary"))
         }

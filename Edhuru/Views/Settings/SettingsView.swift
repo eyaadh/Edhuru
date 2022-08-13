@@ -9,10 +9,13 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    
     @Binding var isSettingsShowing: Bool
     @Binding var isOnboarding: Bool
     
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    @State private var isPresentingDeleteConfirm: Bool = false
+    
     
     var body: some View {
         ZStack {
@@ -47,10 +50,24 @@ struct SettingsView: View {
                         .font(Font.settings)
                     
                     Button {
-                        // TODO: Delete Account
+                        isPresentingDeleteConfirm = true
                     } label: {
                         Text("Delete Account")
                             .font(Font.settings)
+                    }
+                    .confirmationDialog("Are you sure?",
+                                        isPresented: $isPresentingDeleteConfirm) {
+                        Button("Delete your account?", role: .destructive) {
+                            // Deactivate the account
+                            settingsViewModel.deactivateAccount {
+                                // logout and show the on boarding
+                                AuthViewModel.logout()
+                                
+                                isOnboarding = true
+                            }
+                        }
+                    } message: {
+                        Text("You cannot undo this action")
                     }
                     
                     Button {
@@ -63,10 +80,10 @@ struct SettingsView: View {
                         Text("Logout")
                             .font(Font.settings)
                     }
-
-
+                    
+                    
                 }
-               
+                
             }
             .background(Color("background"))
         }

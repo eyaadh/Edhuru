@@ -59,20 +59,23 @@ struct ContactsListView: View {
             if contactsViewModel.filteredUsers.count > 0 {
                 // contact list
                 List(contactsViewModel.filteredUsers) { user in
-                    // Display rows
-                    Button {
-                        
-                        // search for the existing conversation with the required user
-                        chatViewModel.getChatFor(contacts: [user])
-                        
-                        // display conversations view
-                        isChatViewShowing = true
-                    } label: {
-                        ContactRow(user: user)
+                    // only show the users who are active i.e. ignore deleted users
+                    if user.isactive {
+                        // Display rows
+                        Button {
+                            
+                            // search for the existing conversation with the required user
+                            chatViewModel.getChatFor(contacts: [user])
+                            
+                            // display conversations view
+                            isChatViewShowing = true
+                        } label: {
+                            ContactRow(user: user)
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
-                    .buttonStyle(.plain)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)

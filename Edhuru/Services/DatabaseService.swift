@@ -349,4 +349,27 @@ class DatabaseService {
             listener.remove()
         }
     }
+    
+    // MARK: -- Account Methods
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        // Make sure the user is logged in
+        guard AuthViewModel.isUserLoggedIn() else {
+            return
+        }
+        
+        // Get a reference to the DB
+        let db = Firestore.firestore()
+        
+        // run the deactivation command
+        db.collection("users")
+            .document(AuthViewModel.getLoggedInUserID())
+            .setData(["isactive": false, "firstname": "Deleted", "lastname": "User"], merge: true) { error in
+            // check for errors
+                if error == nil {
+                    completion()
+                }
+        }
+        
+    }
 }

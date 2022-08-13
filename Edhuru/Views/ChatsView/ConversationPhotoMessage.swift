@@ -11,10 +11,20 @@ struct ConversationPhotoMessage: View {
     
     var imageUrl: String
     var isFromUser: Bool
+    var isActive: Bool = true
     
     var body: some View {
-        // check image cache if the profile pic exists, if so use it
-        if let cachedImage = CacheService.getImage(forKey: imageUrl) {
+        // if the message is from a deleted/inactive user
+        // show a text message as a deleted message
+        if !isActive {
+            ConversationTextMessage(msg: "Photo Deleted",
+                                    isFromUser: isFromUser,
+                                    name: nil,
+                                    isActive: isActive)
+            
+        } else if let cachedImage = CacheService.getImage(forKey: imageUrl) {
+            // check image cache if the profile pic exists, if so use it
+            
             cachedImage
                 .resizable()
                 .scaledToFill()

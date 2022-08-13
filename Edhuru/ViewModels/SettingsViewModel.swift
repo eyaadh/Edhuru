@@ -12,4 +12,13 @@ class SettingsViewModel: ObservableObject {
     
     @AppStorage(Constants.DarkModeKey) var isDarkMode: Bool = false
     
+    var databaseService = DatabaseService()
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        // call database service method
+        databaseService.deactivateAccount {
+            // deactivation completed
+            completion()
+        }
+    }
 }
