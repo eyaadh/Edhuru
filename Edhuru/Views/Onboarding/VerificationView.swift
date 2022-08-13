@@ -16,6 +16,7 @@ struct VerificationView: View {
     @Binding var isOnboarding: Bool
     @State var verifcationCode = ""
     @State var isButtonDisabled:Bool = false
+    @State var isErrorLabelVisible:Bool = false
     
     var body: some View {
         VStack {
@@ -34,10 +35,16 @@ struct VerificationView: View {
                     .frame(height: 56)
                 HStack {
                     TextField("000000", text: $verifcationCode)
+                        .foregroundColor(Color("text-field"))
                         .font(Font.bodyParagraph)
                         .keyboardType(.numberPad)
                         .onReceive(Just(verifcationCode)) { _ in
                             TextHelper.limitText(&verifcationCode, 6)
+                        }
+                        .placeholder(when: verifcationCode.isEmpty) {
+                            Text("000000")
+                                .foregroundColor(Color("text-field"))
+                                .font(Font.bodyParagraph)
                         }
                     
                     Spacer()
@@ -57,9 +64,20 @@ struct VerificationView: View {
             }
             .padding(.top, 34)
             
+            
+            // Error message
+            Text("Invalid Verification Code.")
+                .font(Font.smallText)
+                .foregroundColor(.red)
+                .padding(.top, 20)
+                .opacity(isErrorLabelVisible ? 1 : 0)
+            
             Spacer()
             
             Button {
+                // hide the error if its visible
+                isErrorLabelVisible = false
+                
                 // disable the button to prevent multiple taps
                 isButtonDisabled = true
                 
@@ -86,7 +104,12 @@ struct VerificationView: View {
                         
                         
                     } else {
-                        // TODO: Show the error to user
+                        // Show the error to user
+                        isErrorLabelVisible = true
+                        
+                        if let error = error {
+                            print("An error occurred with verifying the verification code: \(error)")
+                        }
                     }
                     
                     // re-enable the button finally

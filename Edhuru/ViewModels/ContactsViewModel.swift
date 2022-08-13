@@ -44,7 +44,7 @@ class ContactsViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.users = platformUsers
                         
-                        // TODO: Set the filtered list
+                        // Set the filtered list
                         self.filteredContacts(filteredBy: self.filteredText)
                     }
                 }

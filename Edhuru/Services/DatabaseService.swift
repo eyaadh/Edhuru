@@ -93,6 +93,7 @@ class DatabaseService {
         doc.setData([
             "firstname": firstName,
             "lastname": lastName,
+            "isactive": true,
             "phone": userPhone
         ])
         

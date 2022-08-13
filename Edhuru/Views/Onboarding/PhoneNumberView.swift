@@ -12,6 +12,7 @@ struct PhoneNumberView: View {
     @Binding var currentStep: OnboardingStep
     @State var phoneNumber = ""
     @State var isButtonDisabled:Bool = false
+    @State var isErrorLabelVisible:Bool = false
     
     var body: some View {
         VStack {
@@ -30,12 +31,18 @@ struct PhoneNumberView: View {
                     .frame(height: 56)
                 HStack {
                     TextField("e.g. +1 613 515 0123", text:$phoneNumber)
+                        .foregroundColor(Color("text-field"))
                         .font(Font.bodyParagraph)
                         .keyboardType(.numberPad)
                         .onReceive(Just(phoneNumber)) { _ in
                             TextHelper.applyPatternOnNumbers(&phoneNumber,
-                                                             pattern: "+# (###) ###-####",
+                                                             pattern: "+(###) ####-####",
                                                              replacementCharacter: "#")
+                        }
+                        .placeholder(when: phoneNumber.isEmpty) {
+                            Text("e.g. +1 613 515 0123")
+                                .foregroundColor(Color("text-field"))
+                                .font(Font.bodyParagraph)
                         }
                     
                     Spacer()
@@ -55,9 +62,19 @@ struct PhoneNumberView: View {
             }
             .padding(.top, 34)
             
+            // Error message
+            Text("Please enter a valid Phone Number.")
+                .font(Font.smallText)
+                .foregroundColor(.red)
+                .padding(.top, 20)
+                .opacity(isErrorLabelVisible ? 1 : 0)
+            
             Spacer()
             
             Button {
+                // hide the error message if it's enabled
+                isErrorLabelVisible = false
+                
                 // disable the button to prevent multiple taps
                 isButtonDisabled = true
                 
@@ -67,9 +84,13 @@ struct PhoneNumberView: View {
                         // goto Next Step on onboarding
                         currentStep = .verification
                     } else {
-                        // TODO: show the user the error that appeared
+                        // show the user the error that appeared
+                        isErrorLabelVisible = true
+                        if let error = error {
+                            print("An error occured with validating the phone number: \(error)")
+                        }
                     }
-                    
+                
                     // finally re-enable the button
                     isButtonDisabled = false
                 }
@@ -78,8 +99,10 @@ struct PhoneNumberView: View {
                 HStack {
                     Text("Next")
                     
-                    ProgressView()
-                        .padding(.leading, 2)
+                    if isButtonDisabled {
+                        ProgressView()
+                            .padding(.leading, 2)
+                    }
                 }
             }
             .buttonStyle(OnboardingButtonStyle())

@@ -20,6 +20,9 @@ struct CreateProfileView: View {
     
     @State var isSaveButtonDisabled:Bool = false
     
+    @State var isErrorLabelVisible:Bool = false
+    @State var errorMessage:String = ""
+    
     var body: some View {
         VStack {
             Text("Setup Profile")
@@ -67,15 +70,43 @@ struct CreateProfileView: View {
             // first name
             TextField("Given Name", text: $firstName)
                 .textFieldStyle(CreateProfileTextfiledStyle())
+                .placeholder(when: firstName.isEmpty) {
+                    Text("Given Name")
+                        .foregroundColor(Color("text-field"))
+                        .font(Font.bodyParagraph)
+                }
             
             // last name
             TextField("Last Name", text: $lastName)
                 .textFieldStyle(CreateProfileTextfiledStyle())
+                .placeholder(when: lastName.isEmpty) {
+                    Text("Last Name")
+                        .foregroundColor(Color("text-field"))
+                        .font(Font.bodyParagraph)
+                }
             
+            // Error message
+            Text(errorMessage)
+                .font(Font.smallText)
+                .foregroundColor(.red)
+                .padding(.top, 20)
+                .opacity(isErrorLabelVisible ? 1 : 0)
             
             Spacer()
             
             Button {
+                // hide error message if its visible
+                isErrorLabelVisible = false
+                
+                // check if both first name and last name are filled before allowing to save
+                guard !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                        !lastName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                    
+                    errorMessage = "Please enter a valid First Name and Last Name."
+                    isErrorLabelVisible = true
+                    return
+                }
+                
                 // Disable the button once pressed to avoid double taps
                 self.isSaveButtonDisabled = true
                 // Next Step
@@ -85,7 +116,9 @@ struct CreateProfileView: View {
                     if isSuccess {
                         currentStep = .contacts
                     } else {
-                        // TODO: show error message
+                        // show error message
+                        self.errorMessage = "An error occurred. Please try again."
+                        self.isErrorLabelVisible = true
                     }
                     self.isSaveButtonDisabled = false
                 }
