@@ -11,6 +11,7 @@ import Combine
 struct PhoneNumberView: View {
     @Binding var currentStep: OnboardingStep
     @State var phoneNumber = ""
+    @State var isButtonDisabled:Bool = false
     
     var body: some View {
         VStack {
@@ -57,6 +58,9 @@ struct PhoneNumberView: View {
             Spacer()
             
             Button {
+                // disable the button to prevent multiple taps
+                isButtonDisabled = true
+                
                 // Send their phone number to firebase
                 AuthViewModel.sendPhoneNumber(phone: phoneNumber) { error in
                     if error == nil {
@@ -65,13 +69,22 @@ struct PhoneNumberView: View {
                     } else {
                         // TODO: show the user the error that appeared
                     }
+                    
+                    // finally re-enable the button
+                    isButtonDisabled = false
                 }
                 
             } label: {
-                Text("Next")
+                HStack {
+                    Text("Next")
+                    
+                    ProgressView()
+                        .padding(.leading, 2)
+                }
             }
             .buttonStyle(OnboardingButtonStyle())
             .padding(.bottom, 87)
+            .disabled(isButtonDisabled)
         }
         .padding(.horizontal)
     }

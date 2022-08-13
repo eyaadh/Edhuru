@@ -15,6 +15,7 @@ struct VerificationView: View {
     @Binding var currentStep: OnboardingStep
     @Binding var isOnboarding: Bool
     @State var verifcationCode = ""
+    @State var isButtonDisabled:Bool = false
     
     var body: some View {
         VStack {
@@ -59,6 +60,9 @@ struct VerificationView: View {
             Spacer()
             
             Button {
+                // disable the button to prevent multiple taps
+                isButtonDisabled = true
+                
                 // send the verification code to firebase
                 AuthViewModel.verifyCode(code: verifcationCode) { error in
                     if error == nil {
@@ -84,13 +88,24 @@ struct VerificationView: View {
                     } else {
                         // TODO: Show the error to user
                     }
+                    
+                    // re-enable the button finally
+                    isButtonDisabled = false
                 }
                 
             } label: {
-                Text("Next")
+                HStack {
+                    Text("Next")
+                    
+                    if isButtonDisabled {
+                        ProgressView()
+                            .padding(.leading, 2)
+                    }
+                }
             }
             .buttonStyle(OnboardingButtonStyle())
             .padding(.bottom, 87)
+            .disabled(isButtonDisabled)
         }
         .padding(.horizontal)
     }

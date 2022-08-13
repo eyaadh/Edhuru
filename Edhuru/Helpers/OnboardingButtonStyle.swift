@@ -16,6 +16,8 @@ struct OnboardingButtonStyle: ButtonStyle {
                 .frame(height: 50)
                 .cornerRadius(4.0)
                 .foregroundColor(Color("button-primary"))
+                .scaleEffect(configuration.isPressed ? 1.05 : 1)
+                .animation(.easeOut, value: 1)
             
             configuration.label
                 .font(Font.button)
