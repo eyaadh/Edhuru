@@ -46,8 +46,9 @@ struct ChatsListView: View {
                         // display convertation view
                         isChatShowing = true
                     } label: {
+                        let otherParticipantIDs = chat.participantids.filter { $0 != AuthViewModel.getLoggedInUserID() }
                         ChatListRow(chat: chat,
-                                    otherParticipants: contactsViewModel.getParticipants(ids: chat.participantids))
+                                    otherParticipants: contactsViewModel.getParticipants(ids: otherParticipantIDs))
                     }
                     .buttonStyle(.plain)
                     .listRowBackground(Color.clear)
