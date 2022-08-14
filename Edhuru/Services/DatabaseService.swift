@@ -339,6 +339,40 @@ class DatabaseService {
         })
     }
     
+    /// Delete a specific message from a given chat
+    func deleteMessage(chat: Chat, msgid: String, completion: @escaping (Bool) -> Void) {
+        // get a reference to DB
+        let db = Firestore.firestore()
+        
+        // add message doc
+        db.collection("chats")
+            .document(chat.id!)
+            .collection("msgs")
+            .document(msgid).delete { error in
+                if error == nil {
+                    // update the last message
+                    self.getAllMessages(chat: chat) { msgs in
+                        if let lastmsg = msgs.last {
+                            db.collection("chats")
+                                .document(chat.id!)
+                                .setData(["updated": Date(), "lastmsg": lastmsg.msg == "" ? "Image": lastmsg.msg], merge: true)
+                        } else {
+                            db.collection("chats")
+                                .document(chat.id!)
+                                .setData(["updated": Date(), "lastmsg": "Conversation deleted."], merge: true)
+                        }
+                        
+                        completion(true)
+                    }
+                } else {
+                    completion(false)
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+    }
+    
     func detachChatListViewListeners() {
         for listener in chatListViewListeners {
             listener.remove()

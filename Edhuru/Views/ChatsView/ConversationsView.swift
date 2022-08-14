@@ -76,7 +76,7 @@ struct ConversationsView: View {
                                         Text("\(partipant?.firstname ?? ""), \(participant2.firstname ?? "")")
                                     } else if participants.count > 2 {
                                         let participant2 = participants[1]
-
+                                        
                                         Text("\(partipant?.firstname ?? ""), \(participant2.firstname ?? "") + \(participants.count - 2) others")
                                     }
                                 }
@@ -162,20 +162,24 @@ struct ConversationsView: View {
                                     if msg.imageurl != "" {
                                         // show the photo message
                                         ConversationPhotoMessage(imageUrl: msg.imageurl!,
-                                                                 isFromUser: isFromUser,
-                                                                 isActive: userOfMsg?.isactive ?? true)
+                                                                 isFromUser: userOfMsg?.isactive ?? true)
+                                        
                                     } else {
                                         // show the text message
                                         // also determine if its a group chat and anther user
                                         if participants.count > 1 && !isFromUser {
                                             // show the text message with name
                                             
-                                            ConversationTextMessage(msg: msg.msg,
+                                            ConversationTextMessage(msgid: msg.id!,
+                                                                    msg: msg.msg,
                                                                     isFromUser: isFromUser,
                                                                     name: "\(userOfMsg?.firstname ?? "") \(userOfMsg?.lastname ?? "")",
                                                                     isActive: userOfMsg?.isactive ?? true)
+                                            
                                         } else {
-                                            ConversationTextMessage(msg: msg.msg, isFromUser: isFromUser)
+                                            ConversationTextMessage(msgid: msg.id!,
+                                                                    msg: msg.msg,
+                                                                    isFromUser: isFromUser)
                                         }
                                         
                                         
@@ -259,7 +263,7 @@ struct ConversationsView: View {
                                         .font(Font.bodyParagraph)
                                 }
                                 .padding(10)
-                                
+                            
                             
                             // Emoji button
                             //                        HStack {
@@ -361,7 +365,10 @@ struct ConversationsView: View {
         } content: {
             ContactsPicker(isContactsPickerShowing: $isContactsPickerShowing, selectedContacts: $participants)
         }
-
+        .alert(chatViewModel.messageDeletionAlertContent, isPresented: $chatViewModel.showingMessageDeletionAlert) {
+            Button("OK", role: .cancel) { }
+        }
+        
         
     }
 }

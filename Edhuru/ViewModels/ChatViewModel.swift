@@ -16,6 +16,9 @@ class ChatViewModel: ObservableObject {
     
     @Published var messages: [ChatMessage] = [ChatMessage]()
     
+    @Published var showingMessageDeletionAlert:Bool = false
+    @Published var messageDeletionAlertContent: String = ""
+    
     var databaseService = DatabaseService()
     
     init() {
@@ -126,6 +129,18 @@ class ChatViewModel: ObservableObject {
         }
         
         databaseService.sendPhotoMessage(image: image, chat: selectedChat!)
+    }
+    
+    func deleteMessage(msgid: String, completeion: @escaping (Bool) -> Void) {
+        if let selectedChat = selectedChat {
+            databaseService.deleteMessage(chat: selectedChat, msgid: msgid) { res in
+                completeion(res)
+            }
+        } else {
+            completeion(false)
+            print("There was an error deleting the message. Selected Chat is empty.")
+        }
+        
     }
     
     func conversationViewCleanup() {

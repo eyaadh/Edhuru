@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ConversationPhotoMessage: View {
     
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     var imageUrl: String
     var isFromUser: Bool
     var isActive: Bool = true
@@ -18,9 +20,7 @@ struct ConversationPhotoMessage: View {
         // show a text message as a deleted message
         if !isActive {
             ConversationTextMessage(msg: "Photo Deleted",
-                                    isFromUser: isFromUser,
-                                    name: nil,
-                                    isActive: isActive)
+                                    isFromUser: isFromUser)
             
         } else if let cachedImage = CacheService.getImage(forKey: imageUrl) {
             // check image cache if the profile pic exists, if so use it
@@ -53,7 +53,8 @@ struct ConversationPhotoMessage: View {
                     
                 case .failure:
                     // couldnt fetch the image, show the error
-                    ConversationTextMessage(msg: "Could not load the image.", isFromUser: isFromUser)
+                    ConversationTextMessage(msg: "Could not load the image.",
+                                            isFromUser: isFromUser)
                 }
             }
         }

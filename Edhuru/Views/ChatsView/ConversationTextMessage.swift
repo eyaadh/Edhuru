@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ConversationTextMessage: View {
     
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
+    var msgid: String = ""
     var msg: String
     var isFromUser: Bool
     var name: String?
@@ -33,5 +36,28 @@ struct ConversationTextMessage: View {
         .padding(.horizontal, 24)
         .background(isFromUser ? Color("bubble-primary"): Color("bubble-secondary"))
         .cornerRadius(30, corners: isFromUser ?  [.topLeft, .topRight, .bottomLeft]: [.topLeft, .topRight, .bottomRight])
+        .contentShape(
+            .contextMenuPreview,
+            RoundedRectangle(cornerRadius: 30)
+        )
+        .contextMenu {
+            if isFromUser{
+                
+                Button {
+                    // Delete Message
+                    chatViewModel.deleteMessage(msgid: msgid) { result in
+                        if result {
+                            chatViewModel.messageDeletionAlertContent = "Message Deleted Successfully."
+                        } else {
+                            chatViewModel.messageDeletionAlertContent = "There was an error trying to delete the message."
+                        }
+                        chatViewModel.showingMessageDeletionAlert = true
+                    }
+                    
+                } label: {
+                    Label("Delete Message", systemImage: "trash")
+                }
+            }
+        }
     }
 }
