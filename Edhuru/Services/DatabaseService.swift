@@ -273,7 +273,7 @@ class DatabaseService {
     }
     
     /// Send a photo message to the database
-    func sendPhotoMessage(image: UIImage, chat: Chat) {
+    func sendPhotoMessage(image: UIImage, msg: String, chat: Chat) {
         
         // check that it is a valid chat
         guard chat.id != nil else {
@@ -310,14 +310,14 @@ class DatabaseService {
                             .document(chat.id!)
                             .collection("msgs")
                             .addDocument(data: ["imageurl": url!.absoluteString,
-                                                "msg": "",
+                                                "msg": msg,
                                                 "senderid": AuthViewModel.getLoggedInUserID(),
                                                 "timestamp": Date()])
                         
                         // update the chat document on DB with the new data
                         db.collection("chats")
                             .document(chat.id!)
-                            .setData(["updated": Date(), "lastmsg": "image"], merge: true)
+                            .setData(["updated": Date(), "lastmsg": "Image - \(msg)"], merge: true)
                     }
                 }
             }

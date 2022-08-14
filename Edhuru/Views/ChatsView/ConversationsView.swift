@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 
 struct ConversationsView: View {
@@ -25,6 +26,8 @@ struct ConversationsView: View {
     
     @State var isSourceMenuShowing:Bool = false
     @State var source:UIImagePickerController.SourceType = .photoLibrary
+    
+    @State var textEditorHeight : CGFloat = 20
     
     var body: some View {
         ZStack {
@@ -162,6 +165,7 @@ struct ConversationsView: View {
                                     if msg.imageurl != "" {
                                         // show the photo message
                                         ConversationPhotoMessage(msgid: msg.id!,
+                                                                 msg: msg.msg,
                                                                  imageUrl: msg.imageurl!,
                                                                  isFromUser: userOfMsg?.isactive ?? true)
                                         
@@ -234,12 +238,39 @@ struct ConversationsView: View {
                         // if the chat message is an image, show the image rather
                         if selectedImage != nil {
                             // display image in the message bar
-                            Text("Image")
-                                .foregroundColor(Color("text-input"))
-                                .font(Font.bodyParagraph)
-                                .padding(10)
+                            VStack (spacing: 0){
+                                Image(uiImage: selectedImage!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: 120)
+                                
+                                
+                                TextField("Enter your caption", text: $chatMessage)
+                                    .foregroundColor(Color("text-input"))
+                                    .font(Font.bodyParagraph)
+                                    .placeholder(when: chatMessage.isEmpty) {
+                                        Text("Enter your caption")
+                                            .foregroundColor(Color("text-field"))
+                                            .font(Font.bodyParagraph)
+                                    }
+                                    .onReceive(Just(chatMessage)) { newMessage in
+                                        if newMessage.count > 50 {
+                                            self.chatMessage = String(chatMessage.prefix(50))
+                                        }
+                                    }
+                                    
+                                    .onSubmit {
+                                        // Send Message
+                                        sendMessage()
+                                    }
+                                    .padding(2)
+                                
+                                
+                            }
+                            .padding()
                             
-                            // Emoji button
+                            
+                            // clear content button
                             HStack {
                                 Spacer()
                                 
@@ -255,20 +286,30 @@ struct ConversationsView: View {
                             }
                             .padding(.trailing, 12)
                         } else {
-                            TextField("Type your message", text: $chatMessage)
-                                .foregroundColor(Color("text-input"))
-                                .font(Font.bodyParagraph)
-                                .textInputAutocapitalization(.never)
-                                .placeholder(when: chatMessage.isEmpty) {
-                                    Text("Type your message")
-                                        .foregroundColor(Color("text-field"))
-                                        .font(Font.bodyParagraph)
-                                }
-                                .padding(10)
-                                .onSubmit {
-                                    // Send Message
-                                    sendMessage()
-                                }
+                            ZStack {
+                                TextEditor(text: $chatMessage)
+                                    .foregroundColor(Color("text-input"))
+                                    .font(Font.bodyParagraph)
+                                    .textInputAutocapitalization(.never)
+                                    .frame(height: max(40,textEditorHeight))
+                                    .placeholder(when: chatMessage.isEmpty) {
+                                        Text("Type your message")
+                                            .foregroundColor(Color("text-field"))
+                                            .font(Font.bodyParagraph)
+                                    }
+                                    .padding(10)
+                                    .onSubmit {
+                                        // Send Message
+                                        sendMessage()
+                                    }
+                                
+                                Text(chatMessage).opacity(0).padding(.all, 8)
+                                    .background(GeometryReader {
+                                        Color.clear.preference(key: ViewHeightKey.self,
+                                                               value: $0.frame(in: .local).size.height)
+                                    })
+                            }
+                            
                         }
                     }
                     .frame(height: 44)
@@ -301,6 +342,7 @@ struct ConversationsView: View {
             let ids = chatViewModel.getParticipantIDs()
             self.participants = contactsViewModel.getParticipants(ids: ids)
             
+            UITextView.appearance().backgroundColor = .clear
         }
         .onDisappear {
             // close the listners and cleanup
@@ -348,11 +390,17 @@ struct ConversationsView: View {
     private func sendMessage() {
         // check if the image is selected, if so send the image first
         if selectedImage != nil {
+            // cleanup chat messages before sending it, remove any leading rubbish
+            chatMessage = chatMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+            
             // send the selected image
-            chatViewModel.sendPhotoMessage(image: selectedImage!)
+            chatViewModel.sendPhotoMessage(image: selectedImage!, msg: chatMessage)
             
             // clear selected image for new text message
             self.selectedImage = nil
+            
+            // clear the chat message after sending
+            chatMessage = ""
         } else {
             // cleanup chat messages before sending it, remove any leading rubbish
             chatMessage = chatMessage.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -363,6 +411,13 @@ struct ConversationsView: View {
             // clear the chat message after sending
             chatMessage = ""
         }
+    }
+}
+
+struct ViewHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat { 0 }
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = value + nextValue()
     }
 }
 

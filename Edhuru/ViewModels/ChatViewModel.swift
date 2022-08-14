@@ -122,13 +122,13 @@ class ChatViewModel: ObservableObject {
         databaseService.sendMessage(msg: msg, chat: selectedChat!)
     }
     
-    func sendPhotoMessage(image: UIImage) {
+    func sendPhotoMessage(image: UIImage, msg: String) {
         // check that there is already a selected chat
         guard self.selectedChat != nil else {
             return
         }
         
-        databaseService.sendPhotoMessage(image: image, chat: selectedChat!)
+        databaseService.sendPhotoMessage(image: image, msg: msg, chat: selectedChat!)
     }
     
     func deleteMessage(msgid: String, completeion: @escaping (Bool) -> Void) {

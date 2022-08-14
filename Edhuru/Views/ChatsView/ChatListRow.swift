@@ -60,6 +60,7 @@ struct ChatListRow: View {
                     Text(chat.lastmsg ?? "")
                         .font(Font.bodyParagraph)
                         .foregroundColor(Color("text-input"))
+                        .lineLimit(2)
                 }
                 
                 Spacer()
