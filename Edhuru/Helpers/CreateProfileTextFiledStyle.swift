@@ -20,6 +20,7 @@ struct CreateProfileTextfiledStyle: TextFieldStyle {
             configuration
                 .foregroundColor(Color("text-field"))
                 .font(Font.tabBar)
+                .textInputAutocapitalization(.never)
                 .padding()
             
         }

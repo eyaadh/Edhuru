@@ -46,6 +46,7 @@ struct ContactsListView: View {
                 TextField("Search contact or number", text: $filterText)
                     .font(Font.tabBar)
                     .foregroundColor(Color("text-field"))
+                    .textInputAutocapitalization(.never)
                     .placeholder(when: filterText.isEmpty) {
                         Text("Search contact or number")
                             .foregroundColor(Color("text-field"))

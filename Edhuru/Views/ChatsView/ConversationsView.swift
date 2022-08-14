@@ -258,6 +258,7 @@ struct ConversationsView: View {
                             TextField("Type your message", text: $chatMessage)
                                 .foregroundColor(Color("text-input"))
                                 .font(Font.bodyParagraph)
+                                .textInputAutocapitalization(.never)
                                 .placeholder(when: chatMessage.isEmpty) {
                                     Text("Type your message")
                                         .foregroundColor(Color("text-field"))
