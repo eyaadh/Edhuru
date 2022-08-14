@@ -86,6 +86,10 @@ struct ContactsListView: View {
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)
+                .refreshable {
+                    contactsViewModel.emptyLocalContactsCache()
+                    contactsViewModel.getLocalContacts()
+                }
                 
                 
             } else {

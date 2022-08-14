@@ -54,6 +54,10 @@ class ContactsViewModel: ObservableObject {
         }
     }
     
+    func emptyLocalContactsCache() {
+        self.localContacts = [CNContact]()
+    }
+    
     func filteredContacts(filteredBy: String) {
         
         // store parameter into property

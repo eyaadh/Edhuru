@@ -69,6 +69,9 @@ struct ChatsListView: View {
                     }
                 }
                 .listStyle(.plain)
+                .refreshable {
+                    chatViewModel.getChats()
+                }
                 
             } else {
                 Spacer()

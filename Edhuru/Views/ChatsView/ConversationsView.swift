@@ -265,23 +265,10 @@ struct ConversationsView: View {
                                         .font(Font.bodyParagraph)
                                 }
                                 .padding(10)
-                            
-                            
-                            // Emoji button
-                            //                        HStack {
-                            //                            Spacer()
-                            //
-                            //                            Button {
-                            //                                // Emojis
-                            //                            } label: {
-                            //                                Image(systemName: "face.smiling")
-                            //                                    .resizable()
-                            //                                    .scaledToFit()
-                            //                                    .frame(width: 24, height: 24)
-                            //                                    .foregroundColor(Color("text-input"))
-                            //                            }
-                            //                        }
-                            //                        .padding(.trailing, 12)
+                                .onSubmit {
+                                    // Send Message
+                                    sendMessage()
+                                }
                         }
                     }
                     .frame(height: 44)
@@ -289,23 +276,7 @@ struct ConversationsView: View {
                     
                     // send button
                     Button {
-                        // check if the image is selected, if so send the image first
-                        if selectedImage != nil {
-                            // send the selected image
-                            chatViewModel.sendPhotoMessage(image: selectedImage!)
-                            
-                            // clear selected image for new text message
-                            self.selectedImage = nil
-                        } else {
-                            // cleanup chat messages before sending it, remove any leading rubbish
-                            chatMessage = chatMessage.trimmingCharacters(in: .whitespacesAndNewlines)
-                            
-                            // Send Message
-                            chatViewModel.sendMessage(msg: chatMessage)
-                            
-                            // clear the chat message after sending
-                            chatMessage = ""
-                        }
+                        sendMessage()
                     } label: {
                         Image(systemName: "paperplane.fill")
                             .resizable()
@@ -372,6 +343,26 @@ struct ConversationsView: View {
         }
         
         
+    }
+    
+    private func sendMessage() {
+        // check if the image is selected, if so send the image first
+        if selectedImage != nil {
+            // send the selected image
+            chatViewModel.sendPhotoMessage(image: selectedImage!)
+            
+            // clear selected image for new text message
+            self.selectedImage = nil
+        } else {
+            // cleanup chat messages before sending it, remove any leading rubbish
+            chatMessage = chatMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Send Message
+            chatViewModel.sendMessage(msg: chatMessage)
+            
+            // clear the chat message after sending
+            chatMessage = ""
+        }
     }
 }
 
