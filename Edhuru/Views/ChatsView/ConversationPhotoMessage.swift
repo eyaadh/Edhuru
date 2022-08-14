@@ -11,6 +11,7 @@ struct ConversationPhotoMessage: View {
     
     @EnvironmentObject var chatViewModel: ChatViewModel
     
+    var msgid: String = ""
     var imageUrl: String
     var isFromUser: Bool
     var isActive: Bool = true
@@ -32,6 +33,23 @@ struct ConversationPhotoMessage: View {
                 .padding(.horizontal, 24)
                 .background(isFromUser ? Color("bubble-primary"): Color("bubble-secondary"))
                 .cornerRadius(30, corners: isFromUser ?  [.topLeft, .topRight, .bottomLeft]: [.topLeft, .topRight, .bottomRight])
+                .contextMenu {
+                    if isFromUser{
+                        // Save photo to galary
+                        Button {
+                            ImageSaver.writeToPhotoAlbum(image: imageUrl)
+                        } label: {
+                            Label("Save to Photos", systemImage: "tray.and.arrow.down")
+                        }
+                        
+                        // Delete Message
+                        Button {
+                            deleteMsg(msgid: msgid)
+                        } label: {
+                            Label("Delete Message", systemImage: "trash")
+                        }
+                    }
+                }
         } else {
             AsyncImage(url: URL(string: imageUrl)) { phase in
                 switch phase {
@@ -50,13 +68,56 @@ struct ConversationPhotoMessage: View {
                         .onAppear {
                             CacheService.setImage(image: image, forKey: imageUrl)
                         }
+                        .contextMenu {
+                            // Save photo to galary
+                            Button {
+                                ImageSaver.writeToPhotoAlbum(image: imageUrl)
+                            } label: {
+                                Label("Save to Photos", systemImage: "tray.and.arrow.down")
+                            }
+
+                            
+                            if isFromUser{
+                                // Delete Message
+                                Button {
+                                    deleteMsg(msgid: msgid)
+                                } label: {
+                                    Label("Delete Message", systemImage: "trash")
+                                }
+                            }
+                        }
                     
                 case .failure:
                     // couldnt fetch the image, show the error
                     ConversationTextMessage(msg: "Could not load the image.",
                                             isFromUser: isFromUser)
+                    .contextMenu {
+                        if isFromUser{
+                            
+                            // Delete Message
+                            Button {
+                                deleteMsg(msgid: msgid)
+                            } label: {
+                                Label("Delete Message", systemImage: "trash")
+                            }
+                        }
+                    }
                 }
             }
+        }
+        
+        
+    }
+    
+    // delete msg function
+    private func deleteMsg(msgid: String) {
+        chatViewModel.deleteMessage(msgid: msgid) { result in
+            if result {
+                chatViewModel.messageDeletionAlertContent = "Message Deleted Successfully."
+            } else {
+                chatViewModel.messageDeletionAlertContent = "There was an error trying to delete the message."
+            }
+            chatViewModel.showingMessageDeletionAlert = true
         }
     }
 }

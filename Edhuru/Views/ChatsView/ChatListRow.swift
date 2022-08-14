@@ -41,12 +41,12 @@ struct ChatListRow: View {
                             } else if otherParticipants.count == 2 {
                                 let participant2 = otherParticipants[1]
                             
-                                Text("\(participant.firstname ?? "") \(participant2.firstname ?? "")")
+                                Text("\(participant.firstname ?? ""), \(participant2.firstname ?? "")")
                                     
                             } else if otherParticipants.count > 2 {
                                 let participant2 = otherParticipants[1]
                                 
-                                Text("\(participant.firstname ?? "") \(participant2.firstname ?? "") + \(otherParticipants.count - 2 ) others")
+                                Text("\(participant.firstname ?? ""), \(participant2.firstname ?? "") + \(otherParticipants.count - 2 ) others")
                                     
                             }
                         }

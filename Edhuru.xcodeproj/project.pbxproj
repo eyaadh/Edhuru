@@ -29,6 +29,7 @@
 		397500FF28A6F29700924651 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397500FE28A6F29700924651 /* SettingsViewModel.swift */; };
 		3975010128A6F32F00924651 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975010028A6F32F00924651 /* Constants.swift */; };
 		3975010528A853F400924651 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975010428A853F400924651 /* ViewExtensions.swift */; };
+		39998B1B28A90B4B00FF2AE5 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39998B1A28A90B4B00FF2AE5 /* ImageSaver.swift */; };
 		39A19D4E289A6F7900B08027 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A19D4D289A6F7800B08027 /* TabBarButton.swift */; };
 		39A19D53289A8EC500B08027 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D52289A8EC500B08027 /* FirebaseAuth */; };
 		39A19D55289A8EC600B08027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 39A19D54289A8EC600B08027 /* FirebaseFirestore */; };
@@ -85,6 +86,7 @@
 		397500FE28A6F29700924651 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		3975010028A6F32F00924651 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3975010428A853F400924651 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		39998B1A28A90B4B00FF2AE5 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		39A19D4D289A6F7800B08027 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		39A19D5C289A8F2300B08027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39A19D5E289AD16900B08027 /* Edhuru.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Edhuru.entitlements; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				39B12C90289D53FD00C8E24D /* DateHelper.swift */,
 				3975010028A6F32F00924651 /* Constants.swift */,
 				3975010428A853F400924651 /* ViewExtensions.swift */,
+				39998B1A28A90B4B00FF2AE5 /* ImageSaver.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				39D5893828A5689E008BE016 /* GroupProfilePicView.swift in Sources */,
 				397500FD28A6E05A00924651 /* SettingsView.swift in Sources */,
 				3945D127289B88C5005A70B9 /* TextHelper.swift in Sources */,
+				39998B1B28A90B4B00FF2AE5 /* ImageSaver.swift in Sources */,
 				394C1F68289A6922004E8956 /* CustomTabBar.swift in Sources */,
 				39B12C95289D76A400C8E24D /* ChatListRow.swift in Sources */,
 				39B12C9D289ED92700C8E24D /* ContactsPicker.swift in Sources */,

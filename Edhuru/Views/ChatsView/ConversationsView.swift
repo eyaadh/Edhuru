@@ -161,7 +161,8 @@ struct ConversationsView: View {
                                     
                                     if msg.imageurl != "" {
                                         // show the photo message
-                                        ConversationPhotoMessage(imageUrl: msg.imageurl!,
+                                        ConversationPhotoMessage(msgid: msg.id!,
+                                                                 imageUrl: msg.imageurl!,
                                                                  isFromUser: userOfMsg?.isactive ?? true)
                                         
                                     } else {
