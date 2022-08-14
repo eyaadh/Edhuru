@@ -171,13 +171,14 @@ class DatabaseService {
         // perform a query against the chat collection for any chats where the logged in user is a participant
         let chatQuery = db.collection("chats")
             .whereField("participantids", arrayContains: AuthViewModel.getLoggedInUserID())
+            .order(by: "updated")
         
         let listener = chatQuery.addSnapshotListener { snapshot, error in
             if error == nil && snapshot != nil {
                 
                 var chats = [Chat]()
                 
-                for doc in snapshot!.documents {
+                for doc in snapshot!.documents.reversed() {
                     // parse the data into chat structs
                     let chat = try? doc.data(as: Chat.self)
                     
